@@ -24,10 +24,14 @@
       } catch (e) {
         console.error('Error checking server status:', e);
       }
-    }, 600000);
+    }, 60000);
 
     // Element references
     const chatBox = document.getElementById('chat-box');
+    if (!chatBox) {
+  alert("Chat box not found. Please reload.");
+  return;
+    }
     const userInput = document.getElementById('user-input');
     const sendBtn = document.getElementById('send-btn');
     const clearBtn = document.getElementById('clear-btn');
