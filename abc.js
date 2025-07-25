@@ -360,89 +360,58 @@ function isHardQuestion(text) {
   return keywords.some((kw) => lower.includes(kw));
     }
 ‎
-‎inputForm.onsubmit = async (ev) => {
-‎  ev.preventDefault();
-‎  const now = Date.now();
-‎  if (now - lastSentTime < RATE_LIMIT_MS) {
-‎    appendMessage('⚠️ You are replying too fast. Please wait and try again.', 'bot-message');
-‎    return;
-‎  }
-‎  lastSentTime = now;
-‎
-‎  const prompt = userInput.value.trim();
-‎  if (!prompt) return;
-‎  userInput.value = '';
-‎  appendMessage(prompt, 'user-message');
-‎
-‎  if (!(await checkLimit())) return;
-‎
-‎  const mood = getMood(prompt);
-‎  if (prompt.includes('girlfriend') || prompt.includes('boyfriend')) {
-‎    localStorage.setItem(gfKey, 'yes');
-‎  }
-‎
-‎  const typingDiv = appendMessage('<span></span>', 'bot-message');
-‎  const lastMessages = messages.slice(-6);
-‎
-‎  if (isHardQuestion(prompt)) {
-‎    typingDiv.querySelector('span').textContent = '🔎 Searching...';
-‎    let searchResult = await searchWikipedia(prompt);
-‎    if (!searchResult) {
-‎      searchResult = await searchSearchEngine(prompt);
-‎    }
-‎    if (searchResult) {
-‎      typingDiv.querySelector('span').textContent = '';
-‎      animateTyping(typingDiv, `${searchResult.info}\n\n(Source: ${searchResult.source}${searchResult.url ? ' - ' + searchResult.url : ''})`);
-‎      messages.push({ role: 'user', content: prompt });
-‎      messages.push({ role: 'assistant', content: `${searchResult.info}\n\n(Source: ${searchResult.source}${searchResult.url ? ' - ' + searchResult.url : ''})` });
-‎      localStorage.setItem('chat_history', JSON.stringify(messages));
-‎      return;
-‎    }
-‎    typingDiv.querySelector('span').textContent = '';
-‎  }
-‎
-‎  try {
-  const response = await fetch('https://api.tahmideditofficial.workers.dev', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      model: 'moonshotai/kimi-k2-instruct',
-      temperature: 0.9,
-      top_p: 0.95,
-      max_tokens: isPremiumUser ? 2300 : 2000,
-      messages: [
-        { role: 'system', content: messages[0]?.content || "" },
-        ...lastMessages,
-        { role: 'user', content: prompt }
-      ]
-    })
-  });
+‎‎inputForm.onsubmit = async (ev) => {
+  ev.preventDefault();
 
-  const data = await response.json();
-  const reply = data?.choices?.[0]?.message?.content;
+  const now = Date.now();
+  if (now - lastSentTime < RATE_LIMIT_MS) {
+    appendMessage('⚠️ You are replying too fast. Please wait and try again.', 'bot-message');
+    return;
+  }
+  lastSentTime = now;
 
-  if (!reply) throw new Error('No AI reply');
+  const prompt = userInput.value.trim();
+  if (!prompt) return;
+  userInput.value = '';
+  appendMessage(prompt, 'user-message');
 
-  typingDiv.querySelector('span').textContent = '';
-  animateTyping(typingDiv, reply);
+  if (!(await checkLimit())) return;
 
-  messages.push({ role: 'user', content: prompt });
-  messages.push({ role: 'assistant', content: reply });
+  const mood = getMood(prompt);
+  if (prompt.includes('girlfriend') || prompt.includes('boyfriend')) {
+    localStorage.setItem(gfKey, 'yes');
+  }
 
-  localStorage.setItem('chat_history', JSON.stringify(messages));
+  const typingDiv = appendMessage('<span></span>', 'bot-message');
+  const lastMessages = messages.slice(-6);
 
-} catch (error) {
-  appendMessage('⚠️ Server error. Trying backup...', 'bot-message');
+  if (isHardQuestion(prompt)) {
+    typingDiv.querySelector('span').textContent = '🔎 Searching...';
+    let searchResult = await searchWikipedia(prompt);
+    if (!searchResult) {
+      searchResult = await searchSearchEngine(prompt);
+    }
+    if (searchResult) {
+      const resultText = `${searchResult.info}\n\n(Source: ${searchResult.source}${searchResult.url ? ' - ' + searchResult.url : ''})`;
+      typingDiv.querySelector('span').textContent = '';
+      animateTyping(typingDiv, resultText);
+      messages.push({ role: 'user', content: prompt });
+      messages.push({ role: 'assistant', content: resultText });
+      localStorage.setItem('chat_history', JSON.stringify(messages));
+      return;
+    }
+    typingDiv.querySelector('span').textContent = '';
+  }
 
   try {
-    const backup = await fetch('https://backupapi.tahmideditofficial.workers.dev', {
+    const response = await fetch('https://api.tahmideditofficial.workers.dev', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         model: 'moonshotai/kimi-k2-instruct',
         temperature: 0.9,
         top_p: 0.95,
-        max_tokens: isPremiumUser ? 2000 : 1800,
+        max_tokens: isPremiumUser ? 2300 : 2000,
         messages: [
           { role: 'system', content: messages[0]?.content || "" },
           ...lastMessages,
@@ -450,28 +419,62 @@ function isHardQuestion(text) {
         ]
       })
     });
-‎      const backupData = await backup.json();
-‎      const reply = backupData?.choices?.[0]?.message?.content;
-‎      if (reply) {
-‎        typingDiv.querySelector('span').textContent = '';
-‎        animateTyping(typingDiv, reply);
-‎        messages.push({ role: 'user', content: prompt });
-‎        messages.push({ role: 'assistant', content: reply });
-‎        localStorage.setItem('chat_history', JSON.stringify(messages));
-‎      } else {
-‎        typingDiv.remove();
-‎        appendMessage('⚠️ No response from Ai.', 'bot-message');
-‎      }
-‎    } catch (backupError) {
-‎      typingDiv.remove();
-‎      appendMessage('🌐 ❌ Both servers failed. Try again later or contact on WhatsApp 01963178893 .', 'bot-message');
-‎    }
-‎  }
-‎};
-‎
-‎resetLimitIfNewDay();
-‎appendMessage("👋 Hi ! I'm your smart Bangladeshi Ai ChatBot 🇧🇩. Ask me anything. 💬", 'bot-message');
-‎userInput.focus();
+
+    const data = await response.json();
+    const mainReply = data?.choices?.[0]?.message?.content;
+
+    if (!mainReply) throw new Error('No AI reply');
+
+    typingDiv.querySelector('span').textContent = '';
+    animateTyping(typingDiv, mainReply);
+    messages.push({ role: 'user', content: prompt });
+    messages.push({ role: 'assistant', content: mainReply });
+    localStorage.setItem('chat_history', JSON.stringify(messages));
+
+  } catch (error) {
+    appendMessage('⚠️ Server error. Trying backup...', 'bot-message');
+
+    try {
+      const backup = await fetch('https://backupapi.tahmideditofficial.workers.dev', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          model: 'moonshotai/kimi-k2-instruct',
+          temperature: 0.9,
+          top_p: 0.95,
+          max_tokens: isPremiumUser ? 2000 : 1800,
+          messages: [
+            { role: 'system', content: messages[0]?.content || "" },
+            ...lastMessages,
+            { role: 'user', content: prompt }
+          ]
+        })
+      });
+
+      const backupData = await backup.json();
+      const backupReply = backupData?.choices?.[0]?.message?.content;
+
+      if (backupReply) {
+        typingDiv.querySelector('span').textContent = '';
+        animateTyping(typingDiv, backupReply);
+        messages.push({ role: 'user', content: prompt });
+        messages.push({ role: 'assistant', content: backupReply });
+        localStorage.setItem('chat_history', JSON.stringify(messages));
+      } else {
+        typingDiv.remove();
+        appendMessage('⚠️ No response from AI.', 'bot-message');
+      }
+
+    } catch (backupError) {
+      typingDiv.remove();
+      appendMessage('🌐 ❌ Both servers failed. Try again later or contact on WhatsApp 01963178893.', 'bot-message');
+    }
+  }
+};
+
+resetLimitIfNewDay();
+appendMessage("👋 Hi ! I'm your smart Bangladeshi Ai ChatBot 🇧🇩. Ask me anything. 💬", 'bot-message');
+userInput.focus();
 ‎
 ‎});
 })();
