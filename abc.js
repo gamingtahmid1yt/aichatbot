@@ -248,93 +248,117 @@
 
     await detectUserIPandCheckPremium();
 ‎
-‎const RATE_LIMIT_MS = isPremiumUser ? 3000 : 5000;
-‎const limitKey = 'reply_limit';
-‎const dateKey = 'limit_date';
-‎const dailyLimit = isPremiumUser ? Infinity : 100;
-‎let lastSentTime = 0;
-‎
-‎function resetLimitIfNewDay() {
-‎  const today = new Date().toDateString();
-‎  if (localStorage.getItem(dateKey) !== today) {
-‎    localStorage.setItem(limitKey, '0');
-‎    localStorage.setItem(dateKey, today);
-‎  }
-‎}
-‎
-‎function getTimestamp() {
-‎  return `<div style='font-size:12px;color:gray'>${new Date().toLocaleString()}</div>`;
-‎}
-‎
-‎function appendMessage(text, cls) {
-‎  const div = document.createElement('div');
-‎  div.className = cls;
-‎  div.innerHTML = `<span>${text}</span>${getTimestamp()}`;
-‎  chatBox.appendChild(div);
-‎  chatBox.scrollTop = chatBox.scrollHeight;
-‎  return div;
-‎}
-‎
-‎function animateTyping(element, text) {
-‎  let index = 0;
-‎  const span = element.querySelector('span');
-‎  if (!span) return;
-‎  span.textContent = '';
-‎  const interval = setInterval(() => {
-‎    if (index < text.length) {
-‎      span.textContent += text[index++];
-‎    } else {
-‎      clearInterval(interval);
-‎    }
-‎  }, 1);
-‎}
-‎
-‎async function checkLimit() {
-‎  if (isPremiumUser) return true;
-‎  resetLimitIfNewDay();
-‎  const used = +localStorage.getItem(limitKey) || 0;
-‎  if (used >= dailyLimit) {
-‎    appendMessage(`❌ Daily limit reached. Contact WhatsApp 01963178893 for premium.`, 'bot-message');
-‎    return false;
-‎  }
-‎  localStorage.setItem(limitKey, used + 1 + '');
-‎  return true;
-‎}
-‎
-‎async function searchWikipedia(query) {
-‎  try {
-‎    const res = await fetch('https://en.wikipedia.org/api/rest_v1/page/summary/' + encodeURIComponent(query));
-‎    if (!res.ok) return null;
-‎    const data = await res.json();
-‎    if (data.extract) {
-‎      return { source: 'Wikipedia', info: data.extract, url: data.content_urls?.desktop?.page || '' };
-‎    }
-‎    return null;
-‎  } catch {
-‎    return null;
-‎  }
-‎}
-‎
-‎async function searchSearchEngine(query) {
-‎  try {
-‎    const url = 'https://api.duckduckgo.com/?q=' + encodeURIComponent(query) + '&format=json&no_redirect=1&skip_disambig=1';
-‎    const res = await fetch(url);
-‎    if (!res.ok) return null;
-‎    const data = await res.json();
-‎    if (data.AbstractText && data.AbstractText.trim().length > 0) {
-‎      return { source: 'DuckDuckGo', info: data.AbstractText, url: data.AbstractURL || '' };
-‎    }
-‎    return null;
-‎  } catch {
-‎    return null;
-‎  }
-‎}
-‎
-‎function isHardQuestion(text) {
-‎  const keywords = ['who','what','when','where','why','how','define','meaning','information','tell me about','explain','about','এটা কি','সার্চ'];
-‎  const lower = text.toLowerCase();
-‎  return keywords.some((kw) => lower.includes(kw));
-‎}
+const RATE_LIMIT_MS = isPremiumUser ? 3000 : 5000;
+const limitKey = 'reply_limit';
+const dateKey = 'limit_date';
+const dailyLimit = isPremiumUser ? Infinity : 100;
+let lastSentTime = 0;
+
+// Reset reply limit if a new day starts
+function resetLimitIfNewDay() {
+  const today = new Date().toDateString();
+  const storedDate = localStorage.getItem(dateKey);
+  if (storedDate !== today) {
+    localStorage.setItem(limitKey, '0');
+    localStorage.setItem(dateKey, today);
+  }
+}
+
+// Return a formatted timestamp
+function getTimestamp() {
+  return `<div style='font-size:12px;color:gray'>${new Date().toLocaleString()}</div>`;
+}
+
+// Append a message to the chat
+function appendMessage(text, cls) {
+  const div = document.createElement('div');
+  div.className = cls;
+  div.innerHTML = `<span>${text}</span>${getTimestamp()}`;
+  const chatBox = document.getElementById('chat-box');
+  if (chatBox) {
+    chatBox.appendChild(div);
+    chatBox.scrollTop = chatBox.scrollHeight;
+  }
+  return div;
+}
+
+// Typing animation effect
+function animateTyping(element, text) {
+  let index = 0;
+  const span = element.querySelector('span');
+  if (!span) return;
+  span.textContent = '';
+  const interval = setInterval(() => {
+    if (index < text.length) {
+      span.textContent += text[index++];
+    } else {
+      clearInterval(interval);
+    }
+  }, 1); // 10ms delay for more readable animation
+}
+
+// Check if the user is allowed to send a message
+async function checkLimit() {
+  if (isPremiumUser) return true;
+  resetLimitIfNewDay();
+  let used = parseInt(localStorage.getItem(limitKey) || '0', 10);
+  if (used >= dailyLimit) {
+    appendMessage(`❌ Daily limit reached. Contact WhatsApp 01963178893 for premium.`, 'bot-message');
+    return false;
+  }
+  localStorage.setItem(limitKey, (used + 1).toString());
+  return true;
+}
+
+// Wikipedia search API
+async function searchWikipedia(query) {
+  try {
+    const res = await fetch(`https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(query)}`);
+    if (!res.ok) return null;
+    const data = await res.json();
+    if (data.extract) {
+      return {
+        source: 'Wikipedia',
+        info: data.extract,
+        url: data?.content_urls?.desktop?.page || ''
+      };
+    }
+    return null;
+  } catch (e) {
+    return null;
+  }
+}
+
+// DuckDuckGo search API
+async function searchSearchEngine(query) {
+  try {
+    const url = `https://api.duckduckgo.com/?q=${encodeURIComponent(query)}&format=json&no_redirect=1&skip_disambig=1`;
+    const res = await fetch(url);
+    if (!res.ok) return null;
+    const data = await res.json();
+    if (data.AbstractText && data.AbstractText.trim().length > 0) {
+      return {
+        source: 'DuckDuckGo',
+        info: data.AbstractText,
+        url: data?.AbstractURL || ''
+      };
+    }
+    return null;
+  } catch (e) {
+    return null;
+  }
+}
+
+// Detect if question is hard (to use search fallback)
+function isHardQuestion(text) {
+  const keywords = [
+    'who','what','when','where','why','how',
+    'define','meaning','information','tell me about',
+    'explain','about','এটা কি','সার্চ'
+  ];
+  const lower = text.toLowerCase();
+  return keywords.some((kw) => lower.includes(kw));
+    }
 ‎
 ‎inputForm.onsubmit = async (ev) => {
 ‎  ev.preventDefault();
