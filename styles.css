@@ -1,0 +1,254 @@
+/* Basic Reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Body Styling */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #000;
+  color: #fff;
+  height: 100vh;
+  overflow-x: hidden;
+}
+
+body.light-mode {
+  background: #f9f9f9;
+  color: #000;
+}
+
+img {
+  max-width: 100%;
+  border-radius: 12px;
+  margin-top: 10px;
+}
+
+/* Sticky Top Box */
+#top-box {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: #1a1a1a;
+  padding: 15px;
+  border-bottom: 1px solid #333;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#top-box h1 {
+  margin: 0;
+  font-size: 22px;
+}
+
+body.light-mode #top-box {
+  background: #e6e6e6;
+  color: #000;
+}
+
+/* Main Container */
+#app-container {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 10px;
+  padding-top: 20px;
+  box-sizing: border-box;
+}
+
+/* Chat Box */
+#chat-box {
+  background: #111;
+  border-radius: 8px;
+  padding: 15px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  scroll-behavior: smooth;
+  max-height: calc(100vh - 230px);
+}
+
+body.light-mode #chat-box {
+  background: #fff;
+  color: #000;
+}
+
+/* Message Bubbles */
+.bot-message, .user-message {
+  padding: 12px 18px;
+  border-radius: 10px;
+  font-size: 1rem;
+  line-height: 1.4;
+  white-space: pre-wrap;
+  box-shadow: 0 0 5px #222;
+  margin: 8px 0;
+  max-width: 90%;
+  word-wrap: break-word;
+}
+
+.bot-message {
+  background: #333;
+  color: white;
+  align-self: flex-start;
+}
+
+.user-message {
+  background: #007bff;
+  color: white;
+  align-self: flex-end;
+}
+
+body.light-mode .bot-message {
+  background: #ddd;
+  color: #000;
+}
+
+body.light-mode .user-message {
+  background: #2196f3;
+  color: #fff;
+}
+
+/* Typing Animation */
+.bot-message.typing {
+  font-style: italic;
+  opacity: 0.6;
+  animation: typingFade 0.5s infinite;
+  user-select: none;
+}
+
+@keyframes typingFade {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 0.3; }
+}
+
+/* Input Form */
+#input-form {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  background: #1a1a1a;
+  border-top: 1px solid #333;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+}
+
+body.light-mode #input-form {
+  background: #f1f1f1;
+  border-top: 1px solid #ccc;
+}
+
+#user-input {
+  flex: 1;
+  padding: 12px;
+  font-size: 16px;
+  border: none;
+  border-radius: 6px;
+  outline: none;
+  background: #000;
+  color: #fff;
+}
+
+body.light-mode #user-input {
+  background: #fff;
+  color: #000;
+}
+
+#send-btn {
+  padding: 12px 15px;
+  font-size: 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  background: #007bff;
+  color: white;
+}
+
+/* Top Right Theme Button */
+#theme-switch {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: yellow;
+  margin-left: 10px;
+}
+
+body.light-mode #theme-switch {
+  color: #000;
+}
+
+/* Top Left Clear Button */
+#clear-btn {
+  position: fixed;
+  top: 60px;
+  left: 10px;
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  font-weight: bold;
+  border-radius: 6px;
+  cursor: pointer;
+  z-index: 999;
+}
+
+/* Scroll to Bottom */
+#scroll-to-bottom {
+  position: fixed;
+  bottom: 80px;
+  right: 20px;
+  padding: 10px 16px;
+  font-size: 16px;
+  border: none;
+  border-radius: 50%;
+  background: #007bff;
+  color: #fff;
+  cursor: pointer;
+  z-index: 9999;
+  display: none;
+  box-shadow: 0 0 10px rgba(0,0,0,0.4);
+  transition: background 0.3s ease;
+}
+
+#scroll-to-bottom:hover {
+  background: #0056b3;
+}
+
+#image-upload {
+  display: none;
+}
+
+#upload-label {
+  background: #007bff;
+  color: blue;
+  padding: 10px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  margin-right: 10px;
+  display: inline-block;
+}
+
+/* Responsive Tweaks */
+@media (max-width: 600px) {
+  #chat-box { font-size: 14px; }
+  #clear-btn, #theme-switch { font-size: 12px; padding: 6px 10px; }
+  h1 { font-size: 20px; }
+  #send-btn { padding: 10px 14px; font-size: 14px; }
+  #user-input { font-size: 14px; padding: 10px 12px; }
+}
+
+@media (min-width: 768px) {
+  #app-container { width: 550px; }
+}
+
+@media (min-width: 1024px) {
+  #app-container { width: 600px; }
+  }
