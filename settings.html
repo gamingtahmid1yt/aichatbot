@@ -77,26 +77,13 @@
 
 
   <script>
-    
-      const count = parseInt(localStorage.getItem("replyCount")) || 0;
-      const date = localStorage.getItem("replyDate");
+      
       const today = new Date().toLocaleDateString();
-      const limit = 100;
-      let remaining = limit - count;
-
-      if (date !== today) {
-        localStorage.setItem("replyCount", 0);
-        localStorage.setItem("replyDate", today);
-        remaining = limit;
-      }
-
-      document.getElementById("dailyLimitText").textContent = "You have " + remaining + " replies left today.";
-    };
+      
       function clearAllData() {
       localStorage.removeItem("chat_history");
 
       document.getElementById("clearStatus").textContent = "✅ All chat history and saved data cleared!";
-      document.getElementById("dailyLimitText").textContent = "You have 100 replies daily limit.";
       alert("All chat history and data cleared.");
     }
   </script>
