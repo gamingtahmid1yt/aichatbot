@@ -24,7 +24,7 @@ if (!chatBox) {
 }
 
 const userInput = document.getElementById('user-input');
-const button = document.querySelector('emoji-btn');
+const button = document.getElementById('emoji-btn');
 const sendBtn = document.getElementById('send-btn');
 const inputForm = document.getElementById('input-form');
 const themeToggle = document.getElementById('theme-switch');
@@ -44,9 +44,9 @@ const picker = new EmojiButton({
   });
 
   picker.on('emoji', emoji => {
-    input.value += emoji;
-    input.focus();
-  });
+  userInput.value += emoji;
+  userInput.focus();
+});
 
   button.addEventListener('click', () => {
     picker.togglePicker(button);
