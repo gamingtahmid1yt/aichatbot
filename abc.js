@@ -360,7 +360,7 @@ inputForm.onsubmit = async (ev) => {
   }
 
   try {
-    const response = await fetch('https://api.tahmideditofficial.workers.dev', {
+    const response = await fetch('https://api.tahmideditofficial.workers.de', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
