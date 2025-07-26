@@ -1,4 +1,4 @@
-(() => { document.addEventListener('DOMContentLoaded', async () => { const requiredIds = ['chat-box', 'user-input', 'send-btn', 'clear-btn', 'theme-switch', 'input-form']; for (let id of requiredIds) { if (!document.getElementById(id)) { location.reload(); return; } }
+(() => { document.addEventListener('DOMContentLoaded', async () => { const requiredIds = ['chat-box', 'user-input', 'send-btn', 'theme-switch', 'input-form']; for (let id of requiredIds) { if (!document.getElementById(id)) { location.reload(); return; } }
 
 setInterval(async () => {
   try {
@@ -24,7 +24,6 @@ if (!chatBox) {
 }
 const userInput = document.getElementById('user-input');
 const sendBtn = document.getElementById('send-btn');
-const clearBtn = document.getElementById('clear-btn');
 const inputForm = document.getElementById('input-form');
 const themeToggle = document.getElementById('theme-switch');
 
@@ -36,11 +35,6 @@ themeToggle.onclick = () => {
   const isLight = document.body.classList.toggle('light-mode');
   themeToggle.textContent = isLight ? '☀️' : '🌙';
   localStorage.setItem('theme', isLight ? 'light' : 'dark');
-};
-
-clearBtn.onclick = () => {
-  chatBox.innerHTML = '';
-  localStorage.removeItem('chat_history');
 };
 
 const scrollBtn = document.createElement('button');
