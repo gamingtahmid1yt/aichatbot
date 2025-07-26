@@ -22,6 +22,7 @@ if (!chatBox) {
   alert("Chat box not found. Please reload.");
   return;
 }
+
 const userInput = document.getElementById('user-input');
 const sendBtn = document.getElementById('send-btn');
 const inputForm = document.getElementById('input-form');
@@ -36,6 +37,19 @@ themeToggle.onclick = () => {
   themeToggle.textContent = isLight ? '☀️' : '🌙';
   localStorage.setItem('theme', isLight ? 'light' : 'dark');
 };
+const picker = new EmojiButton({
+    position: 'top-end'
+  });
+
+  picker.on('emoji', emoji => {
+    input.value += emoji;
+    input.focus();
+  });
+
+  button.addEventListener('click', () => {
+    picker.togglePicker(button);
+  });
+});
 
 const scrollBtn = document.createElement('button');
 scrollBtn.textContent = '⇩';
