@@ -23,21 +23,8 @@ if (!chatBox) {
   return;
 }
 
-const button = document.querySelector('emoji-btn');
-const picker = new EmojiButton({
-    position: 'top-end'
-  });
-
-  picker.on('emoji', emoji => {
-    input.value += emoji;
-    input.focus();
-  });
-
-  button.addEventListener('click', () => {
-    picker.togglePicker(button);
-  });
-});
 const userInput = document.getElementById('user-input');
+const button = document.querySelector('emoji-btn');
 const sendBtn = document.getElementById('send-btn');
 const inputForm = document.getElementById('input-form');
 const themeToggle = document.getElementById('theme-switch');
@@ -52,6 +39,19 @@ themeToggle.onclick = () => {
   localStorage.setItem('theme', isLight ? 'light' : 'dark');
 };
 
+const picker = new EmojiButton({
+    position: 'top-end'
+  });
+
+  picker.on('emoji', emoji => {
+    input.value += emoji;
+    input.focus();
+  });
+
+  button.addEventListener('click', () => {
+    picker.togglePicker(button);
+  });
+});
 const scrollBtn = document.createElement('button');
 scrollBtn.textContent = '⇩';
 scrollBtn.id = 'scroll-to-bottom';
