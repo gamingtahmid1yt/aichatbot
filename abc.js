@@ -304,7 +304,7 @@ async function searchSearchEngine(query) {
 }
 
 function isHardQuestion(text) {
-  const keywords = ['who','what','when','where','why','how','define','meaning','information','tell me about','explain','about','এটা কি','সার্চ'];
+  const keywords = ['who','what','when','where','why','how','define','meaning','information','tell me about','explain','about','এটা কি','সার্চ','সার্চইঞ্জিন','সার্জ','web','info','news','new','now','google','website'];
   const lower = text.toLowerCase();
   return keywords.some((kw) => lower.includes(kw));
 }
