@@ -260,7 +260,6 @@ async function searchWikipedia(query) {
   try {
     const res = await fetch(`https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(query)}`);
     if (!res.ok) return null;
-
     const data = await res.json();
     if (data.extract) {
       return {
@@ -275,16 +274,30 @@ async function searchWikipedia(query) {
   }
 }
 
+async function searchSearchEngine(query) {
+  try {
+    const url = `https://api.duckduckgo.com/?q=${encodeURIComponent(query)}&format=json&no_redirect=1&skip_disambig=1`;
+    const res = await fetch(url);
+    if (!res.ok) return null;
+    const data = await res.json();
+    if (data.AbstractText && data.AbstractText.trim().length > 0) {
+      return {
+        source: 'DuckDuckGo',
+        info: data.AbstractText,
+        url: data?.AbstractURL || ''
+      };
+    }
+    return null;
+  } catch (e) {
+    return null;
+  }
+}
+
 function isHardQuestion(text) {
-  const keywords = [
-    'who','what','when','where','why','how','define','meaning','information',
-    'tell me about','explain','about','এটা কি','সার্চ','সার্চইঞ্জিন','সার্জ',
-    'web','info','news','new','now','google','website','search','search this',
-    'youtube','latest','check','data','find','wikipedia'
-  ];
+  const keywords = ['who','what','when','where','why','how','define','meaning','information','tell me about','explain','about','এটা কি','সার্চ','সার্চইঞ্জিন','সার্জ','web','info','news','new','now','google','website','search','search this','youtube','latest','check','data','find','duckduckgo','wikipedia'];
   const lower = text.toLowerCase();
   return keywords.some((kw) => lower.includes(kw));
-  }
+   }
 
 inputForm.onsubmit = async (ev) => {
   ev.preventDefault();
@@ -310,22 +323,19 @@ inputForm.onsubmit = async (ev) => {
   const lastMessages = messages.slice(-9);
 
 if (isHardQuestion(prompt)) {
-  typingDiv.querySelector('span').textContent = '🔎 Searching Wikipedia...';
-  
-  let searchResult = await searchWikipedia(prompt);
-
-  if (searchResult && searchResult.info) {
-    const resultText = `${searchResult.info}\n\n(Source: Wikipedia${searchResult.url ? ' - ' + searchResult.url : ''})`;
-    typingDiv.querySelector('span').textContent = '';
-    animateTyping(typingDiv, resultText);
-    messages.push({ role: 'user', content: prompt });
-    messages.push({ role: 'assistant', content: resultText });
-    localStorage.setItem('chat_history', JSON.stringify(messages));
-    return;
-  } else {
-    typingDiv.querySelector('span').textContent = '';
-    // Continue to AI API fallback (let the main API handle response)
-  }
+    typingDiv.querySelector('span').textContent = '🔎 Searching...';
+    let searchResult = await searchWikipedia(prompt);
+    if (!searchResult) {
+      searchResult = await searchSearchEngine(prompt);
+    }
+    if (searchResult) {
+      const resultText = `${searchResult.info}\n\n(Source: ${searchResult.source}${searchResult.url ? ' - ' + searchResult.url : ''})`;
+      typingDiv.querySelector('span').textContent = '';
+      animateTyping(typingDiv, resultText);
+      messages.push({ role: 'user', content: prompt });
+      messages.push({ role: 'assistant', content: resultText });
+      localStorage.setItem('chat_history', JSON.stringify(messages));
+      return;
     }
 
   try {
