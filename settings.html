@@ -76,7 +76,10 @@
       const today = new Date().toLocaleDateString();
       
       function clearAllData() {
-      localStorage.removeItem("chat_history");
+      localStorage.removeItem("chat_history",
+                              "theme",
+                              "username"
+                             );
 
       document.getElementById("clearStatus").textContent = "✅ All chat history and saved data cleared!";
       alert("All chat history and data cleared.");
