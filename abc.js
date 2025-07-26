@@ -78,7 +78,7 @@ const messages = [
 ‎This chatbot support link: https://wa.me/8801963178893
 ‎This chatbot link: https://gamingtahmid1yt.github.io/aichatbot/
 ‎Tahmid youtube channel: https://www.youtube.com/@gamingtahmid1yt
-‎WhatsApp Support: 01963178893 (Message only) . Anyone can use this chatbot in free until the Ai server limit reached.
+‎WhatsApp Support: 01963178893 (Message only) . Anyone can use this chatbot in free until the Ai server limit reached. This Chatbot can get info from DuckDuckGo and Wikipedia, but you cannot.
 ‎Zawed Karim (co-founder of YouTube) his father is from Bangladesh and his mother is from Germany.
 ‎সবসময় ইউজার এর ভাষায় কথা বলবে. তোমার মালিকের এই নাম্বারে 01963178893 কল দেয়া বারণ, শুধু মেসেজ করতে পারবে.
 ‎
