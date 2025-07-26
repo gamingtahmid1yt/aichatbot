@@ -209,7 +209,7 @@ async function detectUserIPandCheckPremium() {
 
 await detectUserIPandCheckPremium();
 
-const RATE_LIMIT_MS = isPremiumUser ? 2500 : 3000;
+const RATE_LIMIT_MS = isPremiumUser ? 3900 : 4000;
 const limitKey = 'reply_limit';
 const dateKey = 'limit_date';
 const dailyLimit = isPremiumUser ? Infinity : 100;
@@ -358,7 +358,7 @@ inputForm.onsubmit = async (ev) => {
         model: 'moonshotai/kimi-k2-instruct',
         temperature: 0.9,
         top_p: 0.95,
-        max_tokens: isPremiumUser ? 2300 : 2000,
+        max_tokens: isPremiumUser ? 2100 : 2000,
         messages: [
           { role: 'system', content: messages[0]?.content || "" },
           ...lastMessages,
