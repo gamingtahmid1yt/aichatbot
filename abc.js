@@ -336,7 +336,8 @@ if (isHardQuestion(prompt)) {
       messages.push({ role: 'assistant', content: resultText });
       localStorage.setItem('chat_history', JSON.stringify(messages));
       return;
-    }
+    } else {
+‎    typingDiv.querySelector('span').textContent = '';
 
   try {
     const response = await fetch('https://api.tahmideditofficial.workers.dev', {
