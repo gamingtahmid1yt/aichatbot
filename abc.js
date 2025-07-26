@@ -360,7 +360,7 @@ inputForm.onsubmit = async (ev) => {
   }
 
   try {
-    const response = await fetch('https://api.tahmideditofficial.workers.de', {
+    const response = await fetch('https://api.tahmideditofficial.workers.dev', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -391,7 +391,7 @@ inputForm.onsubmit = async (ev) => {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          model: 'moonshotai/kimi-k2-instruct',
+          model: 'moonshotai/kimi-k2:free',
           temperature: 0.9,
           top_p: 0.95,
           max_tokens: isPremiumUser ? 2000 : 1800,
