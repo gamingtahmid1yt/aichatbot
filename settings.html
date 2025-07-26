@@ -60,26 +60,13 @@
   <h2>Settings</h2>
 
   <div class="section">
-    <h3>Saved Name</h3>
-    <input type="text" id="nameInput" placeholder="Enter your name">
-    <button onclick="saveName()">Save Name</button>
-    <button onclick="removeName()">Remove Saved Name</button>
-    <p id="savedName"></p>
-  </div>
-
-  <div class="section">
     <h3>Daily Limit</h3>
     <p id="dailyLimitText">Loading...</p>
   </div>
 
   <div class="section">
-    <h3>Reset Premium</h3>
-    <button onclick="showResetPopup()">Reset Premium with IP</button>
-  </div>
-
-  <div class="section">
     <h3>Clear Chat History & Data</h3>
-    <button onclick="clearAllData()">🧹 Clear Everything</button>
+    <button onclick="clearAllData()">🧹 Clear chat history and data</button>
     <p id="clearStatus"></p>
   </div>
 
@@ -88,46 +75,9 @@
     <button onclick="window.open('https://wa.me/8801963178893','_blank')">Message on WhatsApp</button>
   </div>
 
-  <!-- Reset Premium Popup -->
-  <div id="resetPopup" class="hidden section" style="position: fixed; top: 20%; left: 10%; right: 10%; z-index: 9999;">
-    <h3>Enter IP to reset premium</h3>
-    <input type="text" id="ipInput" placeholder="Enter your IP">
-    <button onclick="resetPremium()">Reset Now</button>
-    <button onclick="hideResetPopup()">Cancel</button>
-    <p id="resetStatus"></p>
-  </div>
 
   <script>
-    function showResetPopup() {
-      document.getElementById("resetPopup").classList.remove("hidden");
-    }
-
-    function hideResetPopup() {
-      document.getElementById("resetPopup").classList.add("hidden");
-      document.getElementById("resetStatus").textContent = "";
-    }
-
-    function saveName() {
-      const name = document.getElementById("nameInput").value;
-      if (name) {
-        localStorage.setItem("savedName", name);
-        document.getElementById("savedName").textContent = "Saved Name: " + name;
-        alert("Name saved!");
-      }
-    }
-
-    function removeName() {
-      localStorage.removeItem("savedName");
-      document.getElementById("savedName").textContent = "";
-      alert("Name removed.");
-    }
-
-    window.onload = function () {
-      const name = localStorage.getItem("savedName");
-      if (name) {
-        document.getElementById("savedName").textContent = "Saved Name: " + name;
-      }
-
+    
       const count = parseInt(localStorage.getItem("replyCount")) || 0;
       const date = localStorage.getItem("replyDate");
       const today = new Date().toLocaleDateString();
@@ -142,33 +92,11 @@
 
       document.getElementById("dailyLimitText").textContent = "You have " + remaining + " replies left today.";
     };
-
-    const allowedIP = "000.000.000.000"; // Change to actual IP you allow
-
-    function resetPremium() {
-      const ip = document.getElementById("ipInput").value.trim();
-      const status = document.getElementById("resetStatus");
-
-      if (ip === allowedIP) {
-        localStorage.removeItem("isPremium");
-        alert("Premium has been reset for IP: " + ip);
-        status.textContent = "✅ Premium reset successfully.";
-      } else {
-        status.innerHTML = `
-          ❌ Incorrect IP.<br>
-          <a href="https://wa.me/8801963178893" target="_blank">
-            Message the developer on WhatsApp
-          </a>`;
-      }
-    }
-
-    function clearAllData() {
+      function clearAllData() {
       localStorage.removeItem("chat_history");
-      localStorage.removeItem("isPremium");
 
       document.getElementById("clearStatus").textContent = "✅ All chat history and saved data cleared!";
-      document.getElementById("savedName").textContent = "";
-      document.getElementById("dailyLimitText").textContent = "You have 30 replies daily limit. Contact below for premium..";
+      document.getElementById("dailyLimitText").textContent = "You have 100 replies daily limit.";
       alert("All chat history and data cleared.");
     }
   </script>
