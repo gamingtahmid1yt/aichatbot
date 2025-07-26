@@ -183,6 +183,13 @@ try {
   localStorage.removeItem('chat_history');
   saved = [];
 }
+if (saved.length > 0) {
+  for (let msg of saved) {
+    const cls = msg.role === 'user' ? 'user-message' : 'bot-message';
+    appendMessage(msg.content, cls);
+  }
+  messages.push(...saved);
+}
 
 const premiumIPs = ['000.000.000.000'];
 let isPremiumUser = false;
