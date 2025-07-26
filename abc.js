@@ -185,10 +185,12 @@ try {
 }
 if (saved.length > 0) {
   for (let msg of saved) {
+    if (msg.role === 'system') continue; // 👉 Skip system messages
     const cls = msg.role === 'user' ? 'user-message' : 'bot-message';
     appendMessage(msg.content, cls);
   }
-  messages.push(...saved);
+  // 👉 Only push non-system messages to main messages array
+  messages.push(...saved.filter(m => m.role !== 'system'));
 }
 
 const premiumIPs = ['000.000.000.000'];
@@ -337,7 +339,7 @@ inputForm.onsubmit = async (ev) => {
   }
 
   const typingDiv = appendMessage('<span></span>', 'bot-message');
-  const lastMessages = messages.slice(-6);
+  const lastMessages = messages.slice(-8);
 
   if (isHardQuestion(prompt)) {
     typingDiv.querySelector('span').textContent = '🔎 Searching...';
