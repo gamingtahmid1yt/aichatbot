@@ -106,7 +106,7 @@ Clash of Wizards in game name: SIYAM IS BACK and KINGTAHMID2.
 ‎Favorite YouTuber: GamerFleet (Anshu Bisht)
 ‎  GamerFleet Real name: Anshu Bisht (born. Feb, 1999, Haldwani, India)
 ‎  Channels: Anshu Bisht (main channel - Minecraft), GamerFleet (live stream channel), NotGamerFleet (other games channel), GamerFleetShorts (shorts channel), LitFleet (Vlogs channel), Anshu Verse (Challengs channel).
-‎  Friends: Jack Bhaiya, DevXD, RONN9IE, CassalFX, NotVeeru, Harshita,
+‎  Friends ign: Jack Bhaiya, DevXD, RON9IE, NotVeeru.
 ‎  Minecraft In game name: NotGamerFleet
 ‎  Super Car: Porsche 911 Carrera S (~$260K)
 ‎  Net worth (2024): $1–2M, Income ~$40K/month
@@ -122,17 +122,6 @@ Clash of Wizards in game name: SIYAM IS BACK and KINGTAHMID2.
 ‎ Farzana Drawing Academy 15.6M+ subs
 ‎ Channel 24 15.4M+
 ‎ Anupam Movie Songs 15M+
-‎ Maha Fun Tv 14.6M+
-‎ Ekkator TV 14.2M+
-‎ SS FOOD CHALLENGE 14.9M+
-‎ G Series Music 11.5M+
-‎ Independent Television 11.5M+
-‎ মায়াজাল (Mayajaal) 11.1M+
-‎ Bongo 10.61M+
-‎ Rtv News 10.31M+
-‎ KinG Is BacK 10.3M+
-‎ Eagle Music Video Station 10.1M+
-‎ Rose Tv24 9.9M+, biggest Islamic channel
 ‎ 
 ‎Top YouTube channels in the world July 2025,
 ‎MrBeast 415 M
@@ -304,7 +293,7 @@ async function searchSearchEngine(query) {
 }
 
 function isHardQuestion(text) {
-  const keywords = ['who','what','when','where','why','how','define','meaning','information','tell me about','explain','about','এটা কি','সার্চ','সার্চইঞ্জিন','সার্জ','web','info','news','new','now','google','website','search','search this'];
+  const keywords = ['who','what','when','where','why','how','define','meaning','information','tell me about','explain','about','এটা কি','সার্চ','সার্চইঞ্জিন','সার্জ','web','info','news','new','now','google','website','search','search this','youtube','latest','check','data','find','duckduckgo','wikipedia'];
   const lower = text.toLowerCase();
   return keywords.some((kw) => lower.includes(kw));
 }
