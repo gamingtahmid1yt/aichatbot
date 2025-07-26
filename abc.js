@@ -391,10 +391,10 @@ inputForm.onsubmit = async (ev) => {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          model: 'moonshotai/kimi-k2:free',
+          model: 'moonshotai/kimi-k2-instruct',
           temperature: 0.9,
           top_p: 0.95,
-          max_tokens: isPremiumUser ? 2000 : 1800,
+          max_tokens: isPremiumUser ? 2000 : 1900,
           messages: [
             { role: 'system', content: messages[0]?.content || "" },
             ...lastMessages,
