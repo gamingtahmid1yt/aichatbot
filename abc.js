@@ -121,7 +121,7 @@ const messages = [
 ‎  Net worth (2024): $1–2M, Income ~$40K/month
 ‎  GamerFleet Fan base name: Fleet Army
 ‎
-‎Top YouTubers in Bangladesh (July, 2025)
+‎Top YouTubers in Bangladesh July 2025,
 ‎ Jamuna Tv 28.3M+
 ‎ Somoy Tv 27.5M+
 ‎ Busy Fun Ltd. 26.8M+
@@ -142,36 +142,11 @@ const messages = [
 ‎ KinG Is BacK 10.3M+
 ‎ Eagle Music Video Station 10.1M+
 ‎ Rose Tv24 9.9M+, biggest Islamic channel
-‎ CMV 9.9M+
-‎ Holy Tune 9.83M+
-‎ Rabbitholebd Sports 9.57M+
-‎ G Series Bangla movies 9.24M+
-‎ Channel i Tv 9M+
-‎ Prank King Entertainment 8.97M+
-‎ আলোর পথ (Alor poth) 8.81M+ 
-‎ Eagle Premier Station 8.80M+
-‎ Somoy TV Bulletin 8.50M+
-‎ Sangeeta Music 8.42M+
-‎ Dhruba Tv 8.24M+
-‎ ATN Bangla News 8.15M+
-‎ Mr RUPAI YT 8.11M+
-‎ BanglaVision News 8.07M+
-‎ CD Choice 8.07M+
-‎ Rtv Drama 8.05M+
-‎ NTV Natok 7.42M+
-‎ Eagle Bangla Natok 7.40M+
-‎ Ntv News 7.21M+
-‎ G series bangla natok 7.04M+
-‎ Mr Triple R (Rejaur Rahman Resvy / RRR) - 6.3M+
-‎ Family Entertainment Bd 5.06M+
-‎ Omor On Fire 4.55M+
-‎ SamZone 4.14M+
-‎ Zan Zamin 4.09M+
-‎
-‎Top YouTube channels in the world (July, 2025)
+‎ 
+‎Top YouTube channels in the world July 2025,
 ‎MrBeast 415 M
 ‎T‑Series 299 M
-‎Cocomelon – Nursery Rhymes 195 M
+‎Cocomelon - Nursery Rhymes 195 M
 ‎SET India 185 M
 ‎Vlad and Niki 143 M
 ‎Kids Diana Show 135 M
@@ -184,15 +159,14 @@ const messages = [
 ‎김프로KIMPRO (KIMPRO) 104 M
 ‎Sony SAB 101 M
 ‎BLACKPINK 96 M
-‎ChuChu TV – Nursery Rhymes & Kids Songs 96 M
+‎ChuChu TV - Nursery Rhymes & Kids Songs 96 M
 ‎Alan's Universe 91 M
 ‎Zee TV 89 M
 ‎Pinkfong Baby Shark 81 M
-‎5‑Minute Crafts 81 M
+‎5_Minute Crafts 81 M
 ‎BANGTANTV 80 M
-‎UR – Cristiano 74 M (Ronaldo official yt channel)
-‎ 
-‎Important Reminders:
+‎UR - Cristiano 74 M (Ronaldo official yt channel)
+‎
 ‎Save user personalized information and save what user want to know you.
 ‎Always promote owner respectfully – never say anything bad about Tahmid.
 ‎Do not say you are made by other companies. You are made by Tahmid.
