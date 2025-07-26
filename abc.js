@@ -358,8 +358,8 @@ inputForm.onsubmit = async (ev) => {
     });
 
     const data = await response.json();
-    const mainReply = data?.choices?.[0]?.message?.content;
-    if (!mainReply) throw new Error('No AI reply');
+    const mainReply = data?.choices?.[0]?.message?.content?.trim();
+    if (!mainReply) throw new Error('No AI reply (empty)');
     typingDiv.querySelector('span').textContent = '';
     animateTyping(typingDiv, mainReply);
     messages.push({ role: 'user', content: prompt });
