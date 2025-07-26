@@ -8,7 +8,7 @@ setInterval(async () => {
       document.body.innerHTML = `
         <div style="text-align:center;padding:40px;">
           <h1>🔒 ChatBot Closed</h1>
-          <p>Contact on WhatsApp <a href="https://wa.me/8801963178893" target="_blank">01963178893</a> for details.</p>
+          <p>Contact on WhatsApp <a href="https://wa.me/8801963178893" target="_blank">***********</a> for details.</p>
         </div>
       `;
     }
@@ -70,12 +70,12 @@ const userType = isPremiumIP ? 'premium' : 'free';
 
 const messages = [
   { role: 'system', content: `You are a smart, friendly, respectful Bangladeshi AI chatbot released on 1 July 2025. You have 1.01 trillion total parameters. If anyone want to donate Tahmid then contact Tahmid in whatsapp and donate. Your creator and owner is Tahmid, a Muslim student from Chandpur, Bangladesh, studying in Class 8 at Goni Model High School. His birthday in 4 August. You're a helpful, respectful, fun, instruction following chatbot made in Bangladesh. তোমার মালিক তাহমিদ চাঁদপুরে থাকে . তুমি একটি এআই .
-‎This chatbot support link: https://wa.me/8801963178893
-‎This chatbot link: https://gamingtahmid1yt.github.io/aichatbot/
-‎Tahmid youtube channel: https://www.youtube.com/@gamingtahmid1yt
-‎WhatsApp Support: 01963178893 (Message only) . Anyone can use this chatbot in free until the Ai server limit reached. This Chatbot system can get info from DuckDuckGo and give users, but cannot update your data. You do not know about your server and internal data and mechanism.
+‎This chatbot support link in Settings > Contact .
+‎This chatbot link https://gamingtahmid1yt.github.io/aichatbot/ .
+‎Tahmid youtube channel https://www.youtube.com/@gamingtahmid1yt .
+‎Anyone can use this chatbot in free until the Ai server limit reached. This Chatbot system can get info from DuckDuckGo and give users, but cannot update your data. You do not know about your server and internal data and mechanism. This chatbot does not collect user info and cookies. All messages saved in user browser local storage. This chatbot is 100 percent safe. This chatbot is fully free and no login needed. If this website hacked then user info will not leak 99 percent guaruntee, 1 percent depends on user browser security and hacking type. Warn user that do not expose important info (e.g. passwords, numbers, bank account, otp).
 ‎Zawed Karim (co-founder of YouTube) his father is from Bangladesh and his mother is from Germany.
-‎সবসময় ইউজার এর ভাষায় কথা বলবে. তোমার মালিকের এই নাম্বারে 01963178893 কল দেয়া বারণ, শুধু মেসেজ করতে পারবে.
+‎সবসময় ইউজার এর ভাষায় কথা বলবে.
 ‎
 ‎Save user name and ask for information if they provide then save. ‎Detect user mood.
 ‎If user is sad, cheer them up. Use logic, emotion, and helpfulness in replies. ‎Reply in user language.
@@ -249,7 +249,7 @@ async function checkLimit() {
   resetLimitIfNewDay();
   let used = parseInt(localStorage.getItem(limitKey) || '0', 10);
   if (used >= dailyLimit) {
-    appendMessage('❌ Daily limit reached. Contact WhatsApp 01963178893 for premium.', 'bot-message');
+    appendMessage('❌ Daily limit reached, will be reset in midnight.', 'bot-message');
     return false;
   }
   localStorage.setItem(limitKey, (used + 1).toString());
@@ -320,7 +320,7 @@ inputForm.onsubmit = async (ev) => {
   }
 
   const typingDiv = appendMessage('<span></span>', 'bot-message');
-  const lastMessages = messages.slice(-8);
+  const lastMessages = messages.slice(-9);
 
   if (isHardQuestion(prompt)) {
     typingDiv.querySelector('span').textContent = '🔎 Searching...';
@@ -397,7 +397,7 @@ inputForm.onsubmit = async (ev) => {
       }
     } catch (backupError) {
       typingDiv.remove();
-      appendMessage('🌐 ❌ Both servers failed. Try again later or contact on WhatsApp 01963178893.', 'bot-message');
+      appendMessage('🌐 ❌ Both servers failed. Try again later.', 'bot-message');
     }
   }
 };
