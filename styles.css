@@ -11,7 +11,7 @@ body {
   background: #000;
   color: #fff;
   height: 100vh;
-  overflow-x: hidden;
+  overflow: hidden;
 }
 
 body.light-mode {
@@ -19,11 +19,6 @@ body.light-mode {
   color: #000;
 }
 
-img {
-  max-width: 100%;
-  border-radius: 12px;
-  margin-top: 10px;
-}
 
 /* Sticky Top Box */
 #top-box {
@@ -56,6 +51,9 @@ body.light-mode #top-box {
   padding: 10px;
   padding-top: 20px;
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 60px);
 }
 
 /* Chat Box */
@@ -68,7 +66,7 @@ body.light-mode #top-box {
   flex-direction: column;
   gap: 15px;
   scroll-behavior: smooth;
-  max-height: calc(100vh - 230px);
+  flex: 1;
 }
 
 body.light-mode #chat-box {
@@ -115,7 +113,7 @@ body.light-mode .user-message {
 .bot-message.typing {
   font-style: italic;
   opacity: 0.6;
-  animation: typingFade 0.5s infinite;
+  animation: typingFade 1s infinite;
   user-select: none;
 }
 
@@ -136,7 +134,7 @@ body.light-mode .user-message {
   bottom: 0;
   left: 0;
   right: 0;
-  z-index: 2;
+  z-index: 1000;
 }
 
 body.light-mode #input-form {
@@ -155,6 +153,10 @@ body.light-mode #input-form {
   color: #fff;
 }
 
+#user-input::placeholder {
+  color: #999;
+}
+
 body.light-mode #user-input {
   background: #fff;
   color: #000;
@@ -168,9 +170,14 @@ body.light-mode #user-input {
   cursor: pointer;
   background: #007bff;
   color: white;
+  transition: background 0.3s ease;
 }
 
-/* Top Right Theme Button */
+#send-btn:hover {
+  background: #0056b3;
+}
+
+/* Theme Switch Button */
 #theme-switch {
   background: none;
   border: none;
@@ -184,28 +191,13 @@ body.light-mode #theme-switch {
   color: #000;
 }
 
-/* Top Left Clear Button */
-#clear-btn {
-  position: fixed;
-  top: 60px;
-  left: 10px;
-  background-color: red;
-  color: white;
-  border: none;
-  padding: 6px 12px;
-  font-weight: bold;
-  border-radius: 6px;
-  cursor: pointer;
-  z-index: 999;
-}
-
-/* Scroll to Bottom */
+/* Scroll to Bottom Button */
 #scroll-to-bottom {
   position: fixed;
   bottom: 80px;
   right: 20px;
   padding: 10px 16px;
-  font-size: 16px;
+  font-size: 18px;
   border: none;
   border-radius: 50%;
   background: #007bff;
@@ -221,34 +213,35 @@ body.light-mode #theme-switch {
   background: #0056b3;
 }
 
-#image-upload {
-  display: none;
-}
-
-#upload-label {
-  background: #007bff;
-  color: blue;
-  padding: 10px 16px;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 14px;
-  margin-right: 10px;
-  display: inline-block;
-}
-
 /* Responsive Tweaks */
 @media (max-width: 600px) {
-  #chat-box { font-size: 14px; }
-  #clear-btn, #theme-switch { font-size: 12px; padding: 6px 10px; }
-  h1 { font-size: 20px; }
-  #send-btn { padding: 10px 14px; font-size: 14px; }
-  #user-input { font-size: 14px; padding: 10px 12px; }
+  #chat-box {
+    font-size: 14px;
+  }
+
+  h1 {
+    font-size: 20px;
+  }
+
+  #send-btn {
+    padding: 10px 14px;
+    font-size: 14px;
+  }
+
+  #user-input {
+    font-size: 14px;
+    padding: 10px 12px;
+  }
 }
 
 @media (min-width: 768px) {
-  #app-container { width: 550px; }
+  #app-container {
+    width: 550px;
+  }
 }
 
 @media (min-width: 1024px) {
-  #app-container { width: 600px; }
+  #app-container {
+    width: 600px;
+  }
   }
