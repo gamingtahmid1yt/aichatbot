@@ -299,11 +299,30 @@ You are powered by Github, Groq, Cloudflare, Open Router, MoonshotAi kimi k2. Ta
       }
     }
 
-    function isHardQuestion(text) {
-      const keywords = ['who', 'what', 'when', 'where', 'information', 'সার্চ', 'web', 'info', 'search', 'find'];
-      const lower = text.toLowerCase();
-      return keywords.some((kw) => lower.includes(kw));
-    }
+function isHardQuestion(text) {
+  const lower = text.toLowerCase().trim();
+
+  // Normalize Bangla-English common words
+  const translated = lower
+    .replace(/কী|কি/g, 'what')
+    .replace(/কখন/g, 'when')
+    .replace(/কে/g, 'who')
+    .replace(/কোথায়|কোথায়/g, 'where')
+    .replace(/কেন/g, 'why')
+    .replace(/ভালোভাবে/g, 'clearly')
+    .replace(/বলো|জানো|জানো/g, 'tell');
+
+  // Main search-intent triggers (expanded)
+  const hardPatterns = [
+    /\b(who|what|when|where|why|how|info|information|search|find|web|site|details|learn|explain)\b/,
+    /\b(kon|kivabe|kemon|keno|ki|kotokhon|kotodin|kichu bolo|bolo)\b/,
+    /\b(\?|\.com|\.net|\.org)\b/,
+    /google|wiki|youtube|ai|server|cloud|bd|api|json|data/,
+    /তথ্য|খোঁজ|বল|ওয়েব|ওয়েব|ইনফো|উত্তর|কিভাবে|বিশ্লেষণ|কারা|কেনো|জানতে|জানাও/
+  ];
+
+  return hardPatterns.some((regex) => regex.test(translated));
+}
 
     inputForm.onsubmit = async (ev) => {
       ev.preventDefault();
