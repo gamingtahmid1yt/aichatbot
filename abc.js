@@ -300,7 +300,7 @@ You are powered by Github, Groq, Cloudflare, Open Router, MoonshotAi kimi k2. Ta
     }
 
     function isHardQuestion(text) {
-      const keywords = ['who', 'what', 'when', 'where', 'why', 'how', 'define', 'meaning', 'information', 'tell me about', 'explain', 'about', 'এটা কি', 'সার্চ', 'web', 'info', 'news', 'now', 'google', 'search', 'youtube', 'check', 'data', 'find'];
+      const keywords = ['who', 'what', 'when', 'where', 'information', 'সার্চ', 'web', 'info', 'search', 'find'];
       const lower = text.toLowerCase();
       return keywords.some((kw) => lower.includes(kw));
     }
