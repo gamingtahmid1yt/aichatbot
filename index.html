@@ -55,9 +55,10 @@
       color: yellow;
     }
 
-
     #app-container {
       padding: 80px 15px 100px;
+      opacity: 0;
+      transition: opacity 0.8s ease;
     }
 
     #chat-box {
@@ -174,24 +175,56 @@
       color: white;
     }
 
-    #system-prompt-box {
-      display: none;
-      padding: 10px;
-      background: #2c2c2c;
-      border-top: 1px solid #444;
+    /* Loading Screen */
+    #loading-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #000;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 2000;
     }
 
-    #system-prompt-box textarea {
-      width: 100%;
-      height: 100px;
-      background: #111;
-      color: white;
-      border: 1px solid #555;
-      padding: 10px;
+    .spinner {
+      width: 40px;
+      height: 40px;
+      border: 5px solid #444;
+      border-top: 5px solid #fff;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin-bottom: 15px;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .blinking {
+      animation: blink 1s steps(2, start) infinite;
+    }
+
+    @keyframes blink {
+      50% {
+        opacity: 0;
+      }
     }
   </style>
 </head>
 <body>
+  <!-- Loading Screen -->
+  <div id="loading-screen">
+    <div class="spinner"></div>
+    <p class="blinking">Loading...</p>
+  </div>
+
   <!-- Top bar -->
   <div id="top-box">
     <h1>AI ChatBot</h1>
@@ -211,16 +244,22 @@
       <button type="submit" id="send-btn">Send</button>
     </form>
 
+    <!-- Scroll to Bottom Button -->
+    <button id="scroll-to-bottom" title="Scroll to bottom">⇘</button>
 
-  <!-- Scroll to Bottom Button -->
-  <button id="scroll-to-bottom" title="Scroll to bottom">⇘</button>
-
-  <!-- System Prompt Box -->
-  <div id="system-prompt-box">
-    <textarea placeholder="Write your system prompt or AI instruction here..."></textarea>
-  </div>
-
-    <!-- JavaScript connection (make sure abc.js is in the same folder) -->
+  <!-- JavaScript connection (make sure abc.js is in the same folder) -->
   <script src="abc.js"></script>
+
+  <!-- Hide loading screen and fade-in chatbot -->
+  <script>
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        const loader = document.getElementById('loading-screen');
+        const app = document.getElementById('app-container');
+        if (loader) loader.style.display = 'none';
+        if (app) app.style.opacity = '1';
+      }, 500);
+    });
+  </script>
 </body>
-</html>
+    </html>
