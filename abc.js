@@ -315,7 +315,7 @@ function isHardQuestion(text) {
   // Main search-intent triggers (expanded)
   const hardPatterns = [
     /\b(who|what|when|where|why|how|info|information|search|find|web|site|details|learn|explain)\b/,
-    /\b(kon|kivabe|kemon|keno|ki|kotokhon|kotodin|kichu bolo|bolo)\b/,
+    /\b(kon|kivabe|kemon|keno|ki|kotokhon|kotodin)\b/,
     /\b(\?|\.com|\.net|\.org)\b/,
     /google|wiki|youtube|ai|server|cloud|bd|api|json|data/,
     /তথ্য|খোঁজ|বল|ওয়েব|ওয়েব|ইনফো|উত্তর|কিভাবে|বিশ্লেষণ|কারা|কেনো|জানতে|জানাও/
@@ -345,7 +345,7 @@ function isHardQuestion(text) {
       }
 
       const typingDiv = appendMessage('<span></span>', 'bot-message');
-      const lastMessages = messages.slice(-9);
+      const lastMessages = messages.slice(-20);
 
       if (isHardQuestion(prompt)) {
         typingDiv.querySelector('span').textContent = '🔎 Searching...';
