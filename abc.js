@@ -328,6 +328,11 @@ function isHardQuestion(text) {
 
       const prompt = userInput.value.trim();
       if (!prompt) return;
+      
+      if (prompt.length > 500) {
+  appendMessage('⚠️ Your message is too long! Please keep it under 500 characters.', 'bot-message');
+  return;
+      }
       userInput.value = '';
       appendMessage(prompt, 'user-message');
       if (!(await checkLimit())) return;
@@ -422,7 +427,7 @@ function isHardQuestion(text) {
     };
 
     resetLimitIfNewDay();
-    appendMessage("👋 Hi ! I'm your smart Bangladeshi Ai ChatBot 🇧🇩. Ask me anything. 💬", 'bot-message');
+    appendMessage("👋 Hi ! I'm your smart Bangladeshi Ai ChatBot 🇧🇩, made by Tahmid. Ask me anything. 💬", 'bot-message');
     userInput.focus();
   });
 })();
