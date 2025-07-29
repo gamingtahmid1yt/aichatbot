@@ -187,13 +187,30 @@ You are powered by Github, Groq, Cloudflare, Open Router, MoonshotAi kimi k2. Ta
       return `<div style='font-size:12px;color:gray'>${new Date().toLocaleString()}</div>`;
     }
 
+    function makeLinksClickable(text) {
+  const tlds = ['com', 'net', 'io', 'in', 'tv', 'bd', 'app', 'co', 'org', 'abc'];
+  const urlPattern = new RegExp(
+    `((https?:\\/\\/)?(www\\.)?[^\\s]+\\.(${tlds.join('|')})(\\/[\\w\\-\\?=&#%\\.]+)*)`,
+    'gi'
+  );
+  
+  return text.replace(urlPattern, function (url) {
+    let hyperlink = url;
+    if (!hyperlink.startsWith('http')) {
+      hyperlink = 'https://' + hyperlink;
+    }
+    return `<a href="${hyperlink}" target="_blank" style="color:#4eaaff;text-decoration:underline;">${url}</a>`;
+  });
+    }
+    
     function appendMessage(text, cls) {
-      const div = document.createElement('div');
-      div.className = cls;
-      div.innerHTML = `<span>${text}</span>${getTimestamp()}`;
-      chatBox.appendChild(div);
-      chatBox.scrollTop = chatBox.scrollHeight;
-      return div;
+  const div = document.createElement('div');
+  div.className = cls;
+  const linkedText = makeLinksClickable(text); // 👈 Make URLs clickable
+  div.innerHTML = `<span>${linkedText}</span>${getTimestamp()}`;
+  chatBox.appendChild(div);
+  chatBox.scrollTop = chatBox.scrollHeight;
+  return div;
     }
 
     function animateTyping(element, text) {
