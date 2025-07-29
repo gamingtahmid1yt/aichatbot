@@ -304,14 +304,12 @@ function isHardQuestion(text) {
 
   // Normalize Bangla-English common words
   const translated = lower
-    .replace(/কী|কি/g, 'what')
-    .replace(/কখন/g, 'when')
-    .replace(/কোথায়/g, 'where');
+    .replace(/কে|ke/g, 'who')
 
   // Main search-intent triggers (expanded)
   const hardPatterns = [
-    /\b(who|what|search|find|web|details|ke|keno|kemne)\b/,
-    /তথ্য|খোঁজ|বল|ওয়েব|ইনফো|কিভাবে|বিশ্লেষণ|কারা|কেনো|জানতে|জানাও/
+    /\b(who|search)\b/,
+    /সার্চ/
   ];
 
   return hardPatterns.some((regex) => regex.test(translated));
