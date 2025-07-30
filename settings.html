@@ -51,6 +51,16 @@
     .top-btn:hover {
       background-color: #1e7e34;
     }
+    #clearStatus {
+      margin-top: 10px;
+      font-weight: bold;
+      color: green;
+      background: #eaffea;
+      padding: 10px;
+      border-radius: 5px;
+      display: none;
+      transition: all 0.3s ease;
+    }
   </style>
 </head>
 <body>
@@ -62,7 +72,7 @@
   <div class="section">
     <h3>Clear Chat History & Data</h3>
     <button onclick="clearAllData()">🧹 Clear chat history and data</button>
-    <p id="clearStatus"></p>
+    <p id="clearStatus">✅ All chat history and saved data cleared!</p>
   </div>
 
   <div class="section">
@@ -70,19 +80,17 @@
     <button onclick="window.open('https://wa.me/8801963178893','_blank')">Message on WhatsApp</button>
   </div>
 
-
   <script>
-      
-      const today = new Date().toLocaleDateString();
-      
-      function clearAllData() {
-      localStorage.removeItem("chat_history",
-                              "theme",
-                              "username"
-                             );
+    function clearAllData() {
+      localStorage.removeItem("chat_history");
+      localStorage.removeItem("theme");
 
-      document.getElementById("clearStatus").textContent = "✅ All chat history and saved data cleared!";
-      alert("All chat history and data cleared.");
+      const status = document.getElementById("clearStatus");
+      status.style.display = "block";
+
+      setTimeout(() => {
+        status.style.display = "none";
+      }, 3000);
     }
   </script>
 </body>
