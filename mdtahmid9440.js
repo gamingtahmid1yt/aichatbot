@@ -184,7 +184,7 @@ You are powered by Github, Groq, Cloudflare, Open Router, MoonshotAi kimi k2. Ta
     }
 
     function getTimestamp() {
-      return `<div style='font-size:12px;color:gray'>${new Date().toLocaleString()}</div>`;
+      return `<div style='font-size:12px;color:#D1D6D5'>${new Date().toLocaleString()}</div>`;
     }
 
     function makeLinksClickable(text) {
