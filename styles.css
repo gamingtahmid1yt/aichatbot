@@ -156,13 +156,23 @@ body.light-mode #chat-box {
 }
 
 body.light-mode .bot-message {
+  background: none;
   background-color: #f0f0f0;
   color: #000;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
 }
 
 body.light-mode .user-message {
+  background: none;
   background-color: #d0e7ff;
   color: #000;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+}
+
+body.light-mode .bot-message {
+  background: linear-gradient(135deg, #fdfdfd, #eaeaea);
 }
 
 /* Typing Animation */
