@@ -171,10 +171,6 @@ body.light-mode .user-message {
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
 }
 
-body.light-mode .bot-message {
-  background: linear-gradient(135deg, #fdfdfd, #eaeaea);
-}
-
 /* Typing Animation */
 .bot-message.typing {
   font-style: italic;
