@@ -188,7 +188,7 @@ You are powered by Github, Groq, Cloudflare, Open Router, MoonshotAi kimi k2. Ta
     }
 
     function makeLinksClickable(text) {
-  const tlds = ['.com', '.net', '.io', '.in', '.tv', '.bd', '.app', '.co', '.org', '.xyz', '.ai'];
+  const tlds = ['com', 'net', 'io', 'in', 'tv', 'bd', 'app', 'co', 'org', 'xyz', 'ai'];
   const urlPattern = new RegExp(
     `((https?:\\/\\/)?(www\\.)?[^\\s]+\\.(${tlds.join('|')})(\\/[\\w\\-\\?=&#%\\.]+)*)`,
     'gi'
