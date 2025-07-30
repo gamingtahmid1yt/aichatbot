@@ -14,7 +14,7 @@ html, body {
   -webkit-font-smoothing: antialiased;
   -webkit-overflow-scrolling: touch;
   transition: background 0.3s ease, color 0.3s ease;
-  overflow: hidden;
+  overflow: show;
 }
 
 body.light-mode {
@@ -98,7 +98,7 @@ body.light-mode #chat-box {
   background-clip: padding-box;
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
   animation: fadeIn 0.25s ease-out;
-  transition: all 0.3s ease;
+  transition: all 0.5s ease;
 }
 
 .bot-message {
