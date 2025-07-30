@@ -5,172 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>AI ChatBot 🇧🇩</title>
   <link rel="stylesheet" href="styles.css" />
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: #111;
-      color: white;
-    }
-
-    .top-buttons {
-      display: flex;
-      align-items: center;
-      gap: 9px;
-    }
-
-    #settings-btn {
-      background-color: #28a745;
-      color: white;
-      border: none;
-      padding: 6px 12px;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 12px;
-      text-decoration: none;
-    }
-
-    #theme-switch {
-      background: none;
-      border: none;
-      font-size: 26px;
-      cursor: pointer;
-      color: yellow;
-    }
-
-    #app-container {
-      padding: 80px 15px 100px;
-      opacity: 0;
-      transition: opacity 0.8s ease;
-    }
-
-    #chat-box {
-      max-width: 800px;
-      margin: auto;
-    }
-
-
-    #input-form {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      display: flex;
-      background: #1a1a1a;
-      padding: 10px;
-      z-index: 999;
-    }
-
-    #user-input {
-      flex: 1;
-      padding: 10px;
-      border: none;
-      border-radius: 6px;
-      font-size: 16px;
-      background: #333;
-      color: white;
-      margin-right: 10px;
-    }
-
-    #send-btn {
-      background: #007bff;
-      border: none;
-      color: white;
-      padding: 10px 16px;
-      border-radius: 6px;
-      cursor: pointer;
-    }
-
-    #scroll-to-bottom {
-      position: fixed;
-      bottom: 80px;
-      right: 10px;
-      background: #333;
-      color: white;
-      border: none;
-      padding: 6px 10px;
-      font-size: 18px;
-      border-radius: 50%;
-      display: none;
-      z-index: 999;
-    }
-
-    .light-mode {
-      background: #f9f9f9;
-      color: #000;
-    }
-
-    .light-mode #chat-box .user-message {
-      background-color: #d0e7ff;
-      color: #000;
-    }
-
-    .light-mode #chat-box .bot-message {
-      background-color: #f0f0f0;
-      color: #000;
-    }
-
-    .light-mode #user-input {
-      background: #eee;
-      color: #000;
-    }
-
-    .light-mode #input-form {
-      background: #ccc;
-    }
-
-    .light-mode #scroll-to-bottom {
-      background: #888;
-      color: black;
-    }
-
-    .light-mode #settings-btn {
-      background-color: #117a2e;
-      color: white;
-    }
-
-    /* Loading Screen */
-    #loading-screen {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: #000;
-      color: white;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      z-index: 2000;
-    }
-
-    .spinner {
-      width: 40px;
-      height: 40px;
-      border: 5px solid #444;
-      border-top: 5px solid #fff;
-      border-radius: 50%;
-      animation: spin 1s linear infinite;
-      margin-bottom: 15px;
-    }
-
-    @keyframes spin {
-      to {
-        transform: rotate(360deg);
-      }
-    }
-
-    .blinking {
-      animation: blink 1s steps(2, start) infinite;
-    }
-
-    @keyframes blink {
-      50% {
-        opacity: 0;
-      }
-    }
-  </style>
 </head>
 <body>
   <!-- Loading Screen -->
@@ -200,9 +34,10 @@
 
     <!-- Scroll to Bottom Button -->
     <button id="scroll-to-bottom" title="Scroll to bottom">⇘</button>
+  </div>
 
   <!-- JavaScript connection (make sure abc.js is in the same folder) -->
-  <script src="abc.js"></script>
+  <script src="mdtahmid9440.js"></script>
 
   <!-- Hide loading screen and fade-in chatbot -->
   <script>
@@ -212,8 +47,8 @@
         const app = document.getElementById('app-container');
         if (loader) loader.style.display = 'none';
         if (app) app.style.opacity = '1';
-      }, 500);
+      }, 300);
     });
   </script>
 </body>
-    </html>
+</html>
