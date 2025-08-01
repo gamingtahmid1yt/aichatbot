@@ -3,45 +3,46 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Smart and interactive AI chatbot 🇧🇩 built by Tahmid" />
   <title>AI ChatBot 🇧🇩</title>
   <link rel="stylesheet" href="styles.css" />
-  <link rel="icon" href="favicon.png" />
+  <link rel="icon" href="favicon.png" type="image/png" />
 </head>
 <body>
   <!-- 🔄 Loading Screen -->
-  <div id="loading-screen">
-    <div class="spinner"></div>
+  <div id="loading-screen" role="alert" aria-busy="true">
+    <div class="spinner" aria-hidden="true"></div>
     <p class="blinking">Loading...</p>
   </div>
 
-  <!-- 🚀 Top Navigation Bar -->
+  <!-- 🚀 Top Bar -->
   <header id="top-box">
     <h1>AI ChatBot</h1>
     <div class="top-buttons">
-      <a href="settings.html" id="settings-btn" title="Settings">⚙️ Settings</a>
-      <button id="theme-switch" title="Toggle Theme">🌙</button>
+      <a href="settings.html" id="settings-btn" title="Settings" aria-label="Settings">⚙️ Settings</a>
+      <button id="theme-switch" title="Toggle Theme" aria-label="Toggle Theme">🌙</button>
     </div>
   </header>
 
-  <!-- 💬 Main App Container -->
+  <!-- 💬 Main Chat Area -->
   <main id="app-container">
-    <!-- 🗨️ Chat Box (Scrollable messages only) -->
-    <div id="chat-box"></div>
+    <!-- 🗨️ Scrollable Messages -->
+    <section id="chat-box" aria-live="polite" aria-label="Chat Messages"></section>
 
-    <!-- 📝 Fixed Input Form at Bottom -->
-    <form id="input-form" autocomplete="off">
-      <input id="user-input" type="text" placeholder="Type a message..." required />
-      <button type="submit" id="send-btn">Send</button>
+    <!-- 📝 Chat Input -->
+    <form id="input-form" autocomplete="off" aria-label="Message Input">
+      <input id="user-input" type="text" placeholder="Type a message..." required aria-required="true" />
+      <button type="submit" id="send-btn" aria-label="Send Message">Send</button>
     </form>
 
-    <!-- ⬇️ Scroll to Bottom Button -->
-    <button id="scroll-to-bottom" title="Scroll to bottom">⇩</button>
+    <!-- ⬇️ Scroll to Bottom -->
+    <button id="scroll-to-bottom" title="Scroll to bottom" aria-label="Scroll to bottom">⇩</button>
   </main>
 
-  <!-- 📜 JavaScript Logic -->
+  <!-- 📜 Chatbot Script -->
   <script src="mdtahmid9440.js"></script>
 
-  <!-- ⏳ Fade In on Load -->
+  <!-- ⏳ Show App After Load -->
   <script>
     window.addEventListener('load', () => {
       setTimeout(() => {
