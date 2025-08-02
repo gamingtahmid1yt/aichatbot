@@ -110,7 +110,7 @@ gap: 16px;
 scroll-behavior: smooth;
 will-change: scroll-position;
 transition: background 0.3s ease;
-max-width: 900px;
+max-width: 700px;
 margin: auto;
 }
 
@@ -305,7 +305,7 @@ body.light-mode #scroll-to-bottom {
   }
 
   #top-box h1 {
-    font-size: 16px;
+    font-size: 18px;
   }
 }
 
