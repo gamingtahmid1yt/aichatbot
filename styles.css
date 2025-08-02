@@ -45,7 +45,7 @@ body.light-mode #top-box {
 
 /* Logo Title */
 #top-box h1 {
-  font-size: 24px;
+  font-size: 26px;
   font-weight: 610;
 }
 
@@ -110,7 +110,7 @@ gap: 16px;
 scroll-behavior: smooth;
 will-change: scroll-position;
 transition: background 0.3s ease;
-max-width: 800px;
+max-width: 900px;
 margin: auto;
 }
 
