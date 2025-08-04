@@ -188,7 +188,7 @@ You are powered by Github, Groq, Cloudflare, MoonshotAi kimi k2. Tahmid secured 
     }
 
     function makeLinksClickable(text) {
-  const tlds = ['com', 'net', 'io', 'in', 'tv', 'bd', 'app', 'co', 'org', 'xyz', 'ai'];
+  const tlds = ['.bd'];
   const urlPattern = new RegExp(
     `((https?:\\/\\/)?(www\\.)?[^\\s]+\\.(${tlds.join('|')})(\\/[\\w\\-\\?=&#%\\.]+)*)`,
     'gi'
