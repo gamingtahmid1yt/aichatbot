@@ -23,7 +23,7 @@
       } catch (e) {
         console.error('Error checking server status:', e);
       }
-    }, 100000);
+    }, 60000);
 
     const chatBox = document.getElementById('chat-box');
     if (!chatBox) {
@@ -224,7 +224,7 @@ You are powered by Github, Groq, Cloudflare, MoonshotAi kimi k2. Tahmid secured 
         } else {
           clearInterval(interval);
         }
-      }, 2);
+      }, 1);
     }
 
     async function checkLimit() {
@@ -346,7 +346,7 @@ function isHardQuestion(text) {
             model: 'moonshotai/kimi-k2-instruct',
             temperature: 0.9,
             top_p: 0.95,
-            max_tokens: 2000,
+            max_tokens: 2500,
             messages: [
               { role: 'system', content: messages[0]?.content || "" },
               ...lastMessages,
@@ -373,7 +373,7 @@ function isHardQuestion(text) {
               model: 'moonshotai/kimi-k2:free',
               temperature: 0.9,
               top_p: 0.95,
-              max_tokens: 1900,
+              max_tokens: 2500,
               messages: [
                 { role: 'system', content: messages[0]?.content || "" },
                 ...lastMessages,
