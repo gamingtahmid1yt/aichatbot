@@ -1,2 +1,49 @@
-# aichatbot
-100% Safe
+# Ai ChatBot
+<!DOCTYPE html>
+<html lang="en">    
+<head>    
+  <meta charset="UTF-8" />    
+  <meta name="viewport" content="width=device-width, initial-scale=1" />    
+  <title>AI ChatBot 🇧🇩</title>    
+  <link rel="stylesheet" href="styles.css" />    
+</head>    
+<body>    
+  <!-- Loading Screen -->    
+  <div id="loading-screen">    
+    <div class="spinner"></div>    
+    <p class="blinking">Loading...</p>    
+  </div>    
+  <!-- Top bar -->
+  <div id="top-box">    
+    <h1>AI ChatBot</h1>    
+    <div class="top-buttons">    
+      <a href="settings.html" id="settings-btn">⚙️ Settings</a>    
+      <button id="theme-switch" title="Toggle Dark/Light">🌙</button>    
+    </div>    
+  </div>    
+  <!-- Main Chat UI -->
+  <div id="app-container">    
+    <div id="chat-box"></div>  
+    <!-- Input -->    
+<form id="input-form">    
+  <input id="user-input" type="text" placeholder="Type a message..." autocomplete="off" />    
+  <button type="submit" id="send-btn">Send</button>    
+</form>    
+    <!-- Scroll to Bottom Button -->
+    <button id="scroll-to-bottom" title="Scroll to bottom">⇩</button>
+
+  </div>      
+  <!-- JavaScript connection (make sure abc.js is in the same folder) -->  
+  <script src="mdtahmid9440.js"></script>
+  <!-- Hide loading screen and fade-in chatbot -->      
+  <script>    
+    window.addEventListener('load', () => {    
+      setTimeout(() => {    
+        const loader = document.getElementById('loading-screen');    
+        const app = document.getElementById('app-container');    
+        if (loader) loader.style.display = 'none';    
+        if (app) app.style.opacity = '1';    
+      }, 300);    
+    });    
+  </script>  </body>    
+</html>
