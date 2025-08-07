@@ -19,7 +19,7 @@ html, body {
 }
 
 body.light-mode {
-  background: #f0f0f0;
+  background: #ffffff;
   color: #000;
 }
 
@@ -35,7 +35,7 @@ body.light-mode {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  transition: background 0.4s ease;
+  transition: background 0.6s ease;
 }
 
 body.light-mode #top-box {
@@ -45,7 +45,7 @@ body.light-mode #top-box {
 
 /* Logo Title */
 #top-box h1 {
-  font-size: 26px;
+  font-size: 27px;
   font-weight: 610;
 }
 
@@ -53,7 +53,7 @@ body.light-mode #top-box {
 .top-buttons {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
 }
 
 #settings-btn {
@@ -69,7 +69,7 @@ body.light-mode #top-box {
 }
 
 #theme-switch {
-  font-size: 26px;
+  font-size: 27px;
   background: none;
   border: none;
   color: gold;
@@ -109,8 +109,8 @@ flex-direction: column;
 gap: 16px;
 scroll-behavior: smooth;
 will-change: scroll-position;
-transition: background 0.3s ease;
-max-width: 700px;
+transition: background 0.5s ease;
+max-width: 690px;
 margin: auto;
 }
 
@@ -133,7 +133,7 @@ body.light-mode #chat-box {
     0 4px 8px rgba(0, 0, 0, 0.1),
     0 8px 30px rgba(0, 0, 0, 0.2);
   animation: fadeInUp 0.35s ease-out;
-  transition: all 0.3s ease;
+  transition: all 0.4s ease;
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
@@ -178,7 +178,7 @@ body.light-mode .user-message {
 
 /* Typing Effect */
 .bot-message.typing {
-  opacity: 0.6;
+  opacity: 0.7;
   font-style: italic;
   animation: typingPulse 1.2s infinite ease-in-out;
   pointer-events: none;
