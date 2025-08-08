@@ -333,8 +333,8 @@ function isHardQuestion(text) {
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             model: 'moonshotai/kimi-k2-instruct',
-            temperature: 0.9,
-            top_p: 0.95,
+            temperature: 0.8,
+            top_p: 1.0,
             max_tokens: 2500,
             messages: [
               { role: 'system', content: messages[0]?.content || "" },
@@ -360,8 +360,8 @@ function isHardQuestion(text) {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
               model: 'moonshotai/kimi-k2:free',
-              temperature: 0.9,
-              top_p: 0.95,
+              temperature: 0.8,
+              top_p: 1.0,
               max_tokens: 2500,
               messages: [
                 { role: 'system', content: messages[0]?.content || "" },
