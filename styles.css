@@ -10,7 +10,9 @@ html, body {
   scroll-behavior: smooth;
   background: #0f0f0f;
   color: #fff;
-  transition: background 0.6s cubic-bezier(0.22, 1, 0.36, 1), color 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: 
+    background 0.6s cubic-bezier(0.22, 1, 0.36, 1), 
+    color 0.6s cubic-bezier(0.22, 1, 0.36, 1);
   -webkit-font-smoothing: antialiased;
   -webkit-overflow-scrolling: touch;
   overflow-x: hidden;
@@ -27,28 +29,35 @@ body.light-mode {
   z-index: 1000;
   padding: 15px 20px;
   background: rgba(20, 20, 20, 0.85);
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(12px) saturate(180%);
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
   border-bottom: 1px solid rgba(255,255,255,0.1);
   display: flex;
   justify-content: space-between;
   align-items: center;
   transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
   will-change: transform, background;
+  box-shadow: 0 2px 15px rgba(0,0,0,0.1);
 }
 
 body.light-mode #top-box {
-  background: rgba(255, 255, 255, 0.9);
-  border-bottom: 1px solid #ddd;
+  background: rgba(255, 255, 255, 0.92);
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+  backdrop-filter: blur(12px) saturate(180%);
 }
 
 #top-box h1 {
   font-size: 28px;
   font-weight: 610;
-  transition: transform 0.3s ease;
+  transition: 
+    transform 0.3s ease,
+    text-shadow 0.3s ease;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.2);
 }
 
 #top-box h1:hover {
   transform: translateX(2px);
+  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
 }
 
 .top-buttons {
@@ -60,20 +69,46 @@ body.light-mode #top-box {
 #settings-btn {
   background: linear-gradient(135deg, #28a745, #218838);
   color: #fff;
-  padding: 6px 12px;
+  padding: 8px 14px;
   font-size: 13px;
   border: none;
-  border-radius: 6px;
+  border-radius: 8px;
   cursor: pointer;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  box-shadow: 
+    0 2px 6px rgba(0,0,0,0.3),
+    inset 0 1px 1px rgba(255,255,255,0.1);
   text-decoration: none;
-  transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: 
+    all 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.4s ease;
   will-change: transform, box-shadow;
+  position: relative;
+  overflow: hidden;
 }
 
 #settings-btn:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 4px 8px rgba(0,0,0,0.4);
+  transform: translateY(-2px);
+  box-shadow: 
+    0 4px 12px rgba(0,0,0,0.4),
+    inset 0 1px 1px rgba(255,255,255,0.2);
+}
+
+#settings-btn:active {
+  transform: translateY(0);
+}
+
+#settings-btn::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    rgba(255,255,255,0.1),
+    rgba(255,255,255,0)
+  );
+  pointer-events: none;
 }
 
 #theme-switch {
@@ -82,19 +117,30 @@ body.light-mode #top-box {
   border: none;
   color: gold;
   cursor: pointer;
-  transition: transform 0.4s cubic-bezier(0.68, -0.6, 0.32, 1.6), color 0.3s ease;
+  transition: 
+    transform 0.4s cubic-bezier(0.68, -0.6, 0.32, 1.6), 
+    color 0.3s ease,
+    filter 0.3s ease;
+  will-change: transform;
+  text-shadow: 0 0 8px rgba(255,215,0,0.3);
 }
 
 #theme-switch:hover {
   transform: rotate(15deg) scale(1.1);
+  filter: brightness(1.1);
+  text-shadow: 0 0 12px rgba(255,215,0,0.5);
 }
 
 body.light-mode #settings-btn {
   background: linear-gradient(135deg, #16a34a, #15803d);
+  box-shadow: 
+    0 2px 6px rgba(0,0,0,0.2),
+    inset 0 1px 1px rgba(255,255,255,0.3);
 }
 
 body.light-mode #theme-switch {
   color: #333;
+  text-shadow: 0 0 8px rgba(0,0,0,0.1);
 }
 
 #app-container {
@@ -113,105 +159,95 @@ body.light-mode #theme-switch {
   flex: 1;
   overflow-y: auto;
   background: #111;
-  border-radius: 12px;
-  padding: 20px;
+  border-radius: 16px;
+  padding: 24px;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 18px;
   scroll-behavior: smooth;
   will-change: scroll-position;
-  transition: background 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: 
+    background 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.6s ease;
   max-width: 690px;
   margin: auto;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  box-shadow: 
+    0 12px 32px rgba(0,0,0,0.25),
+    inset 0 1px 1px rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.03);
 }
 
 body.light-mode #chat-box {
-  background: rgba(255,255,255,0.9);
-  color: #000;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  background: rgba(255,255,255,0.95);
+  box-shadow: 
+    0 12px 32px rgba(0,0,0,0.1),
+    inset 0 1px 1px rgba(0,0,0,0.05);
+  border: 1px solid rgba(0,0,0,0.03);
 }
 
 .user-message,
 .bot-message {
   max-width: 85%;
-  padding: 12px 18px;
+  padding: 14px 20px;
   font-size: 1rem;
-  border-radius: 16px;
+  border-radius: 18px;
   white-space: pre-wrap;
   word-wrap: break-word;
   background-size: 200% 200%;
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   box-shadow:
-    0 3px 8px rgba(0, 0, 0, 0.25),
-    0 6px 20px rgba(0, 0, 0, 0.15);
+    0 4px 12px rgba(0, 0, 0, 0.3),
+    0 8px 24px rgba(0, 0, 0, 0.2);
   transform-style: preserve-3d;
   perspective: 800px;
-  transform: rotateX(0deg) rotateY(0deg);
   transition:
     background 0.4s cubic-bezier(0.22, 1, 0.36, 1),
     color 0.4s cubic-bezier(0.22, 1, 0.36, 1),
     transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
     box-shadow 0.4s ease;
-  animation: fadeInUp 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: 
+    fadeInUp 0.5s cubic-bezier(0.22, 1, 0.36, 1) both,
+    float 6s ease-in-out infinite;
   will-change: transform, opacity;
+  position: relative;
 }
 
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(15px) scale(0.98);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
-.user-message:hover,
-.bot-message:hover {
-  transform: rotateX(2deg) rotateY(-2deg) scale(1.01);
-  box-shadow:
-    0 5px 12px rgba(0, 0, 0, 0.3),
-    0 8px 24px rgba(0, 0, 0, 0.2);
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
 }
 
 .user-message {
   align-self: flex-end;
-  background: linear-gradient(to right, #0d6efd, #0056d2);
+  background: linear-gradient(145deg, #0d6efd, #0056d2);
   color: #ffffff;
   animation-delay: 0.1s;
 }
 
 .bot-message {
   align-self: flex-start;
-  background: linear-gradient(to right, #3a3a3a, #1f1f1f);
+  background: linear-gradient(145deg, #3a3a3a, #1f1f1f);
   color: #ffffff;
   animation-delay: 0.2s;
 }
 
 body.light-mode .bot-message {
-  background: #f2f2f2;
-  color: #111;
-  border: 1px solid rgba(0, 0, 0, 0.05);
+  background: linear-gradient(145deg, #f2f2f2, #e6e6e6);
+  border: 1px solid rgba(0, 0, 0, 0.08);
 }
 
 body.light-mode .user-message {
-  background: linear-gradient(to right, #cce5ff, #b3d9ff);
-  color: #000;
-  border: 1px solid rgba(0, 0, 0, 0.05);
+  background: linear-gradient(145deg, #cce5ff, #b3d9ff);
+  border: 1px solid rgba(0, 0, 0, 0.08);
 }
 
 .bot-message.typing {
   opacity: 0.7;
   font-style: italic;
-  animation: typingPulse 1.2s infinite ease-in-out, fadeInUp 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: 
+    typingPulse 1.2s infinite ease-in-out, 
+    fadeInUp 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
   pointer-events: none;
-}
-
-@keyframes typingPulse {
-  0%, 100% { opacity: 0.6; }
-  50% { opacity: 0.3; }
 }
 
 #input-form {
@@ -220,91 +256,124 @@ body.light-mode .user-message {
   left: 0;
   right: 0;
   display: flex;
-  gap: 10px;
-  padding: 14px 20px;
-  background: rgba(20,20,20,0.9);
-  border-top: 1px solid #333;
+  gap: 12px;
+  padding: 18px 20px;
+  background: rgba(20,20,20,0.92);
+  backdrop-filter: blur(12px) saturate(180%);
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
+  border-top: 1px solid rgba(255,255,255,0.1);
   z-index: 999;
-  backdrop-filter: blur(6px);
   transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  box-shadow: 0 -5px 20px rgba(0,0,0,0.2);
 }
 
 body.light-mode #input-form {
-  background: rgba(255, 255, 255, 0.85);
-  border-top: 1px solid #ccc;
+  background: rgba(255, 255, 255, 0.95);
+  border-top: 1px solid rgba(0,0,0,0.08);
 }
 
 #user-input {
   flex: 1;
-  padding: 12px 14px;
+  padding: 14px 18px;
   border: none;
-  border-radius: 8px;
+  border-radius: 12px;
   font-size: 16px;
   background: #222;
   color: #fff;
-  transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: 
+    all 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.3s ease;
+  box-shadow: 
+    inset 0 1px 3px rgba(0,0,0,0.5),
+    0 1px 1px rgba(255,255,255,0.05);
 }
 
 #user-input:focus {
   outline: none;
-  box-shadow: 0 0 0 2px rgba(13, 110, 253, 0.5);
+  box-shadow: 
+    0 0 0 2px rgba(13, 110, 253, 0.5),
+    inset 0 1px 3px rgba(0,0,0,0.5);
   transform: translateY(-1px);
-}
-
-#user-input::placeholder {
-  color: #aaa;
-  transition: color 0.3s ease;
 }
 
 body.light-mode #user-input {
-  background: #f0f0f0;
-  color: #000;
+  background: #f5f5f5;
+  box-shadow: 
+    inset 0 1px 3px rgba(0,0,0,0.1),
+    0 1px 1px rgba(255,255,255,0.8);
 }
 
 #send-btn {
-  background: linear-gradient(135deg, #0d6efd, #084298);
+  background: linear-gradient(145deg, #0d6efd, #084298);
   color: #fff;
-  padding: 12px 18px;
+  padding: 14px 20px;
   border: none;
-  border-radius: 8px;
+  border-radius: 12px;
   cursor: pointer;
   font-weight: 600;
-  box-shadow: 0 4px 12px rgba(0,123,255,0.3);
+  box-shadow: 
+    0 4px 12px rgba(0,123,255,0.3),
+    inset 0 1px 1px rgba(255,255,255,0.1);
   transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
   will-change: transform, box-shadow;
+  position: relative;
+  overflow: hidden;
 }
 
 #send-btn:hover {
-  background: #06367c;
-  transform: translateY(-1px);
-  box-shadow: 0 6px 16px rgba(0,123,255,0.4);
+  transform: translateY(-2px);
+  box-shadow: 
+    0 6px 16px rgba(0,123,255,0.4),
+    inset 0 1px 1px rgba(255,255,255,0.2);
 }
 
 #send-btn:active {
   transform: translateY(0);
-  box-shadow: 0 2px 8px rgba(0,123,255,0.3);
+}
+
+#send-btn::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    rgba(255,255,255,0.1),
+    rgba(255,255,255,0)
+  );
+  pointer-events: none;
 }
 
 #scroll-to-bottom {
   position: fixed;
   bottom: 80px;
-  right: 10px;
+  right: 20px;
   background: #333;
   color: #fff;
-  padding: 8px 10px;
-  font-size: 18px;
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
   border: none;
   border-radius: 50%;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+  box-shadow: 
+    0 4px 12px rgba(0,0,0,0.3),
+    0 2px 4px rgba(255,255,255,0.05);
   display: none;
   z-index: 999;
-  transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
-  transform: scale(1);
+  transition: 
+    all 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.3s ease;
+  opacity: 0.9;
 }
 
 #scroll-to-bottom:hover {
   background: #0d6efd;
   transform: scale(1.1);
+  opacity: 1;
 }
 
 #scroll-to-bottom:active {
@@ -313,7 +382,7 @@ body.light-mode #user-input {
 
 body.light-mode #scroll-to-bottom {
   background: #aaa;
-  color: #000;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
 }
 
 #loading-screen {
@@ -334,57 +403,44 @@ body.light-mode #scroll-to-bottom {
 }
 
 .spinner {
-  width: 42px;
-  height: 42px;
-  border: 6px solid rgba(255,255,255,0.1);
-  border-top: 6px solid #fff;
+  width: 48px;
+  height: 48px;
+  border: 5px solid rgba(255,255,255,0.1);
+  border-top: 5px solid #fff;
   border-radius: 50%;
-  animation: spin 1s cubic-bezier(0.65, 0, 0.35, 1) infinite;
-  margin-bottom: 10px;
+  animation: 
+    spin 1s cubic-bezier(0.65, 0, 0.35, 1) infinite,
+    pulse 2s ease-in-out infinite;
+  margin-bottom: 16px;
+  box-shadow: 0 0 10px rgba(255,255,255,0.2);
 }
 
-@keyframes spin {
-  to { transform: rotate(360deg); }
-}
-
-.blinking {
-  animation: blink 1s steps(2, start) infinite;
-}
-
-@keyframes blink {
-  50% { opacity: 0.5; }
+@keyframes pulse {
+  0%, 100% { transform: scale(1) rotate(0deg); }
+  50% { transform: scale(1.05) rotate(5deg); }
 }
 
 @media (max-width: 600px) {
   #chat-box {
-    font-size: 14px;
-    padding: 12px;
+    padding: 16px;
+    border-radius: 12px;
   }
 
-  #user-input, #send-btn {
-    font-size: 14px;
-    padding: 10px 12px;
-  }
-
-  #top-box h1 {
-    font-size: 22px;
-  }
-  
   .user-message,
   .bot-message {
-    max-width: 90%;
-    padding: 10px 14px;
+    padding: 12px 16px;
+    border-radius: 16px;
   }
-}
-
-@media (min-width: 768px) {
-  #app-container {
-    width: 600px;
+  
+  #input-form {
+    padding: 14px 16px;
   }
-}
-
-@media (min-width: 1024px) {
-  #app-container {
-    width: 700px;
+  
+  #user-input {
+    padding: 12px 16px;
+  }
+  
+  #send-btn {
+    padding: 12px 16px;
   }
   }
