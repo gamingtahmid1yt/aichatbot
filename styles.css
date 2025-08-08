@@ -149,7 +149,7 @@ body.light-mode #theme-switch {
   padding: 80px 15px 100px;
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  height: calc(100vh - 80px);
   overflow: hidden;
   opacity: 0;
   transition: opacity 0.8s ease;
@@ -171,10 +171,33 @@ body.light-mode #theme-switch {
     box-shadow 0.6s ease;
   max-width: 690px;
   margin: auto;
+  width: 100%;
   box-shadow: 
     0 12px 32px rgba(0,0,0,0.25),
     inset 0 1px 1px rgba(255,255,255,0.05);
   border: 1px solid rgba(255,255,255,0.03);
+  transform: translateZ(0);
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+}
+
+#chat-box::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+#chat-box::-webkit-scrollbar-track {
+  background: rgba(255,255,255,0.05);
+  border-radius: 10px;
+}
+
+#chat-box::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.1);
+  border-radius: 10px;
+}
+
+#chat-box::-webkit-scrollbar-thumb:hover {
+  background: rgba(255,255,255,0.2);
 }
 
 body.light-mode #chat-box {
@@ -212,9 +235,28 @@ body.light-mode #chat-box {
   position: relative;
 }
 
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 10px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
 @keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-3px); }
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  25% { transform: translateY(-3px) rotate(0.5deg); }
+  50% { transform: translateY(-5px) rotate(-0.5deg); }
+  75% { transform: translateY(-3px) rotate(0.5deg); }
+}
+
+@keyframes messagePop {
+  0% { transform: scale(0.95); opacity: 0; }
+  80% { transform: scale(1.02); }
+  100% { transform: scale(1); opacity: 1; }
 }
 
 .user-message {
@@ -222,6 +264,7 @@ body.light-mode #chat-box {
   background: linear-gradient(145deg, #0d6efd, #0056d2);
   color: #ffffff;
   animation-delay: 0.1s;
+  animation-name: fadeInUp, float;
 }
 
 .bot-message {
@@ -229,6 +272,7 @@ body.light-mode #chat-box {
   background: linear-gradient(145deg, #3a3a3a, #1f1f1f);
   color: #ffffff;
   animation-delay: 0.3s;
+  animation-name: fadeInUp, float;
 }
 
 body.light-mode .bot-message {
@@ -252,6 +296,11 @@ body.light-mode .user-message {
   pointer-events: none;
 }
 
+@keyframes typingPulse {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 0.8; }
+}
+
 #input-form {
   position: fixed;
   bottom: 0;
@@ -267,6 +316,7 @@ body.light-mode .user-message {
   z-index: 999;
   transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
   box-shadow: 0 -5px 20px rgba(0,0,0,0.2);
+  transform: translateZ(0);
 }
 
 body.light-mode #input-form {
@@ -288,6 +338,7 @@ body.light-mode #input-form {
   box-shadow: 
     inset 0 1px 3px rgba(0,0,0,0.5),
     0 1px 1px rgba(255,255,255,0.05);
+  transform: translateZ(0);
 }
 
 #user-input:focus {
@@ -320,6 +371,7 @@ body.light-mode #user-input {
   will-change: transform, box-shadow;
   position: relative;
   overflow: hidden;
+  transform: translateZ(0);
 }
 
 #send-btn:hover {
@@ -370,12 +422,22 @@ body.light-mode #user-input {
     all 0.3s cubic-bezier(0.22, 1, 0.36, 1),
     opacity 0.3s ease;
   opacity: 0.9;
+  cursor: pointer;
+  transform: translateZ(0);
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-10px); }
+  60% { transform: translateY(-5px); }
 }
 
 #scroll-to-bottom:hover {
   background: #0d6efd;
   transform: scale(1.1);
   opacity: 1;
+  animation: none;
 }
 
 #scroll-to-bottom:active {
@@ -417,9 +479,22 @@ body.light-mode #scroll-to-bottom {
   box-shadow: 0 0 10px rgba(255,255,255,0.2);
 }
 
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
 @keyframes pulse {
   0%, 100% { transform: scale(1) rotate(0deg); }
   50% { transform: scale(1.05) rotate(5deg); }
+}
+
+.message-enter {
+  animation: messagePop 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes messagePop {
+  0% { transform: scale(0.9); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
 }
 
 @media (max-width: 600px) {
@@ -432,6 +507,7 @@ body.light-mode #scroll-to-bottom {
   .bot-message {
     padding: 12px 16px;
     border-radius: 16px;
+    max-width: 90%;
   }
   
   #input-form {
@@ -445,4 +521,47 @@ body.light-mode #scroll-to-bottom {
   #send-btn {
     padding: 12px 16px;
   }
+  
+  #top-box h1 {
+    font-size: 22px;
+  }
+  
+  #settings-btn {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+  
+  #theme-switch {
+    font-size: 24px;
+  }
+}
+
+/* Enhanced scroll behavior */
+#chat-box {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255,255,255,0.1) rgba(255,255,255,0.05);
+}
+
+/* Smooth message addition */
+.message-container {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  will-change: contents;
+}
+
+/* Input focus animation */
+#user-input:focus {
+  animation: inputFocus 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes inputFocus {
+  0% { box-shadow: inset 0 1px 3px rgba(0,0,0,0.5); }
+  50% { box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.3), inset 0 1px 3px rgba(0,0,0,0.5); }
+  100% { box-shadow: 0 0 0 2px rgba(13, 110, 253, 0.5), inset 0 1px 3px rgba(0,0,0,0.5); }
+}
+
+/* Button press effect */
+#send-btn:active, #settings-btn:active {
+  transition: transform 0.1s ease;
   }
