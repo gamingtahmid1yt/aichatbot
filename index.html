@@ -1,76 +1,48 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">    
+<html lang="en">    
 <head>    
-  <meta charset="UTF-8">    
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">    
-  <meta name="description" content="AI ChatBot application with modern interface">
+  <meta charset="UTF-8" />    
+  <meta name="viewport" content="width=device-width, initial-scale=1" />    
   <title>AI ChatBot 🇧🇩</title>    
-  <link rel="stylesheet" href="styles.css">    
-  <link rel="preload" href="mdtahmid9440.js" as="script">
+  <link rel="stylesheet" href="styles.css" />    
 </head>    
 <body>    
   <!-- Loading Screen -->    
-  <div id="loading-screen" aria-live="polite" aria-busy="true">    
-    <div class="spinner" aria-hidden="true"></div>    
+  <div id="loading-screen">    
+    <div class="spinner"></div>    
     <p class="blinking">Loading...</p>    
   </div>    
+  <!-- Top bar -->
+  <div id="top-box">    
+    <h1>AI ChatBot</h1>    
+    <div class="top-buttons">    
+      <a href="settings.html" id="settings-btn">⚙️ Settings</a>    
+      <button id="theme-switch" title="Toggle Dark/Light">🌙</button>    
+    </div>    
+  </div>    
+  <!-- Main Chat UI -->
+  <div id="app-container">    
+    <div id="chat-box"></div>  
+    <!-- Input -->    
+<form id="input-form">    
+  <input id="user-input" type="text" placeholder="Type a message..." autocomplete="off" />    
+  <button type="submit" id="send-btn">Send</button>    
+</form>    
+    <!-- Scroll to Bottom Button -->
+    <button id="scroll-to-bottom" title="Scroll to bottom">⇩</button>
 
-  <!-- Main Content (hidden during loading) -->
-  <div id="main-content" style="display: none;">
-    <!-- Top bar -->
-    <header id="top-box" role="banner">    
-      <h1>AI ChatBot</h1>    
-      <div class="top-buttons">    
-        <a href="settings.html" id="settings-btn" aria-label="Settings">⚙️ Settings</a>    
-        <button id="theme-switch" title="Toggle Dark/Light" aria-label="Toggle dark mode">🌙</button>    
-      </div>    
-    </header>    
-
-    <!-- Main Chat UI -->
-    <main id="app-container" role="main">    
-      <div id="chat-box" role="log" aria-live="polite"></div>  
-
-      <!-- Input Form -->
-      <form id="input-form" role="form">    
-        <label for="user-input" class="sr-only">Type your message</label>
-        <input 
-          id="user-input" 
-          type="text" 
-          placeholder="Type a message..." 
-          autocomplete="off" 
-          aria-required="true"
-        />    
-        <button type="submit" id="send-btn" aria-label="Send message">Send</button>    
-      </form>    
-
-      <!-- Scroll to Bottom Button -->
-      <button id="scroll-to-bottom" title="Scroll to bottom" aria-label="Scroll to bottom">⇩</button>
-    </main>      
-  </div>
-
-  <!-- JavaScript connection -->
-  <script src="mdtahmid9440.js" defer></script>
-  
-  <!-- Loading transition script -->
+  </div>      
+  <!-- JavaScript connection (make sure abc.js is in the same folder) -->  
+  <script src="mdtahmid9440.js"></script>
+  <!-- Hide loading screen and fade-in chatbot -->      
   <script>    
-    document.addEventListener('DOMContentLoaded', () => {    
+    window.addEventListener('load', () => {    
       setTimeout(() => {    
         const loader = document.getElementById('loading-screen');    
-        const mainContent = document.getElementById('main-content');
-        
-        if (loader) {
-          loader.style.display = 'none';
-          loader.setAttribute('aria-busy', 'false');
-        }    
-        
-        if (mainContent) {
-          mainContent.style.display = 'block';
-          setTimeout(() => {
-            mainContent.style.opacity = '1';
-          }, 10);
-        }    
+        const app = document.getElementById('app-container');    
+        if (loader) loader.style.display = 'none';    
+        if (app) app.style.opacity = '1';    
       }, 200);    
     });    
-  </script>
-</body>    
-  </html>
+  </script>  </body>    
+</html>
