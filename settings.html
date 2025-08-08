@@ -4,87 +4,265 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Settings - AI ChatBot</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
+    :root {
+      --primary: #4361ee;
+      --primary-hover: #3a56d4;
+      --success: #4cc9f0;
+      --success-hover: #38b6db;
+      --danger: #f72585;
+      --danger-hover: #e5177b;
+      --dark: #212529;
+      --light: #f8f9fa;
+      --gray: #6c757d;
+      --border-radius: 12px;
+      --box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+      --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+
     * {
       box-sizing: border-box;
-    }
-    body {
       margin: 0;
       padding: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #f9f9f9;
-      color: #333;
     }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background-color: #f5f7fa;
+      color: var(--dark);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
     .container {
-      max-width: 500px;
-      margin: 30px auto;
-      padding: 20px;
+      max-width: 600px;
+      margin: 2rem auto;
+      padding: 0 1.5rem;
     }
-    .card {
-      background-color: #fff;
-      border-radius: 12px;
-      padding: 20px;
-      margin-bottom: 20px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-      transition: transform 0.3s;
-    }
-    .card:hover {
-      transform: translateY(-4px);
-    }
-    h2 {
-      text-align: center;
-      margin-bottom: 30px;
-      font-weight: 600;
-      color: #222;
-    }
-    h3 {
-      margin-bottom: 15px;
-    }
-    button {
-      width: 100%;
-      padding: 12px;
-      margin-top: 10px;
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.5rem;
+      background-color: var(--success);
+      color: white;
       border: none;
-      border-radius: 6px;
-      font-size: 16px;
+      border-radius: var(--border-radius);
+      font-size: 1rem;
       font-weight: 500;
       cursor: pointer;
-      transition: background-color 0.3s ease;
+      transition: var(--transition);
+      box-shadow: var(--box-shadow);
+      margin-bottom: 2rem;
     }
-    .btn-blue {
-      background-color: #007bff;
+
+    .back-btn:hover {
+      background-color: var(--success-hover);
+      transform: translateY(-2px);
+    }
+
+    .back-btn i {
+      font-size: 0.9rem;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+
+    .header h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: var(--dark);
+      position: relative;
+      display: inline-block;
+    }
+
+    .header h2::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 50px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--primary), var(--success));
+      border-radius: 3px;
+    }
+
+    .card {
+      background-color: white;
+      border-radius: var(--border-radius);
+      padding: 1.75rem;
+      margin-bottom: 1.5rem;
+      box-shadow: var(--box-shadow);
+      transition: var(--transition);
+      border: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .card-header i {
+      font-size: 1.5rem;
+      color: var(--primary);
+    }
+
+    .card-header h3 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--dark);
+    }
+
+    .btn {
+      width: 100%;
+      padding: 0.875rem;
+      border: none;
+      border-radius: var(--border-radius);
+      font-size: 1rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+
+    .btn-primary {
+      background-color: var(--primary);
       color: white;
     }
-    .btn-blue:hover {
-      background-color: #0056b3;
+
+    .btn-primary:hover {
+      background-color: var(--primary-hover);
     }
-    .btn-green {
-      background-color: #28a745;
+
+    .btn-danger {
+      background-color: var(--danger);
       color: white;
     }
-    .btn-green:hover {
-      background-color: #1e7e34;
+
+    .btn-danger:hover {
+      background-color: var(--danger-hover);
     }
-    .btn-red {
-      background-color: #dc3545;
-      color: white;
-    }
-    .btn-red:hover {
-      background-color: #a71d2a;
-    }
+
     .status-msg {
-      margin-top: 15px;
-      background-color: #e0ffe0;
-      color: #155724;
-      padding: 12px;
-      border-radius: 6px;
+      margin-top: 1rem;
+      padding: 1rem;
+      border-radius: var(--border-radius);
       text-align: center;
       display: none;
+      animation: fadeIn 0.3s ease;
+      font-size: 0.95rem;
     }
-    @media screen and (max-width: 600px) {
+
+    .success-msg {
+      background-color: rgba(76, 201, 240, 0.1);
+      color: #0e7490;
+      border: 1px solid rgba(76, 201, 240, 0.3);
+    }
+
+    .settings-group {
+      margin-top: 1.5rem;
+    }
+
+    .setting-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    .setting-item:last-child {
+      border-bottom: none;
+    }
+
+    .setting-label {
+      font-weight: 500;
+      color: var(--dark);
+    }
+
+    .setting-description {
+      font-size: 0.875rem;
+      color: var(--gray);
+      margin-top: 0.25rem;
+    }
+
+    .toggle-switch {
+      position: relative;
+      display: inline-block;
+      width: 50px;
+      height: 24px;
+    }
+
+    .toggle-switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      transition: .4s;
+      border-radius: 34px;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 16px;
+      width: 16px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      transition: .4s;
+      border-radius: 50%;
+    }
+
+    input:checked + .slider {
+      background-color: var(--primary);
+    }
+
+    input:checked + .slider:before {
+      transform: translateX(26px);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 640px) {
       .container {
-        margin: 15px;
-        padding: 10px;
+        padding: 0 1rem;
+      }
+      
+      .header h2 {
+        font-size: 1.75rem;
+      }
+      
+      .card {
+        padding: 1.5rem;
       }
     }
   </style>
@@ -92,38 +270,143 @@
 <body>
 
   <div class="container">
-    <button class="btn-green" onclick="window.location.href='https://gamingtahmid1yt.github.io/aichatbot'">⬅️ Go Back to Ai ChatBot</button>
+    <button class="back-btn" onclick="window.location.href='https://gamingtahmid1yt.github.io/aichatbot'">
+      <i class="fas fa-arrow-left"></i> Back to Ai ChatBot
+    </button>
 
-    <h2>⚙️ Settings</h2>
-
-    <div class="card">
-      <h3>🧹 Clear Chat History & Data</h3>
-      <button class="btn-red" onclick="clearAllData()">Clear All Data</button>
-      <div class="status-msg" id="clearStatus">✅ All chat history and data cleared!</div>
+    <div class="header">
+      <h2><i class="fas fa-cog"></i> Settings</h2>
     </div>
 
     <div class="card">
-      <h3>💬 Contact Developer</h3>
-      <button class="btn-blue" onclick="window.open('https://wa.me/8801963178893','_blank')">Message on WhatsApp</button>
+      <div class="card-header">
+        <i class="fas fa-user-shield"></i>
+        <h3>Account & Privacy</h3>
+      </div>
+      
+      <div class="settings-group">
+        <div class="setting-item">
+          <div>
+            <div class="setting-label">Dark Mode</div>
+            <div class="setting-description">Switch between light and dark theme</div>
+          </div>
+          <label class="toggle-switch">
+            <input type="checkbox" id="darkModeToggle">
+            <span class="slider"></span>
+          </label>
+        </div>
+        
+        <div class="setting-item">
+          <div>
+            <div class="setting-label">Chat History</div>
+            <div class="setting-description">Save conversation history</div>
+          </div>
+          <label class="toggle-switch">
+            <input type="checkbox" id="historyToggle" checked>
+            <span class="slider"></span>
+          </label>
+        </div>
+      </div>
     </div>
 
     <div class="card">
-      <h3>🔒 Privacy Policy</h3>
-      <button class="btn-blue" onclick="window.location.href='https://gamingtahmid1yt.github.io/aichatbot-privacy-policy/'">View Privacy Policy</button>
+      <div class="card-header">
+        <i class="fas fa-broom"></i>
+        <h3>Data Management</h3>
+      </div>
+      
+      <button class="btn btn-danger" onclick="clearAllData()">
+        <i class="fas fa-trash-alt"></i> Clear All Chat Data
+      </button>
+      <div class="status-msg success-msg" id="clearStatus">
+        <i class="fas fa-check-circle"></i> All chat history and data cleared successfully!
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <i class="fas fa-info-circle"></i>
+        <h3>About & Support</h3>
+      </div>
+      
+      <button class="btn btn-primary" onclick="window.open('https://wa.me/8801963178893','_blank')">
+        <i class="fab fa-whatsapp"></i> Contact Developer
+      </button>
+      
+      <button class="btn btn-primary" style="margin-top: 1rem;" onclick="window.location.href='https://gamingtahmid1yt.github.io/aichatbot-privacy-policy/'">
+        <i class="fas fa-shield-alt"></i> Privacy Policy
+      </button>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <i class="fas fa-code-branch"></i>
+        <h3>App Information</h3>
+      </div>
+      
+      <div class="settings-group">
+        <div class="setting-item">
+          <div class="setting-label">Version</div>
+          <div class="setting-value" id="appVersion">1.2.0</div>
+        </div>
+        
+        <div class="setting-item">
+          <div class="setting-label">Last Updated</div>
+          <div class="setting-value">August 08, 2025</div>
+        </div>
+      </div>
     </div>
   </div>
 
   <script>
-    function clearAllData() {
-      localStorage.removeItem("chat_history");
-      localStorage.removeItem("theme");
+    // DOM Elements
+    const darkModeToggle = document.getElementById('darkModeToggle');
+    const historyToggle = document.getElementById('historyToggle');
+    const clearStatus = document.getElementById('clearStatus');
+    const appVersion = document.getElementById('appVersion');
 
-      const status = document.getElementById("clearStatus");
-      status.style.display = "block";
-      setTimeout(() => {
-        status.style.display = "none";
-      }, 4000);
+    // Initialize settings from localStorage
+    function initSettings() {
+      // Dark mode
+      const darkMode = localStorage.getItem('darkMode') === 'true';
+      darkModeToggle.checked = darkMode;
+      if (darkMode) document.body.classList.add('dark-mode');
+      
+      // Chat history
+      const saveHistory = localStorage.getItem('saveHistory') !== 'false';
+      historyToggle.checked = saveHistory;
+      
+      // App version (could be fetched from package.json in a real app)
+      appVersion.textContent = '1.2.0';
     }
+
+    // Toggle dark mode
+    darkModeToggle.addEventListener('change', (e) => {
+      localStorage.setItem('darkMode', e.target.checked);
+      document.body.classList.toggle('dark-mode', e.target.checked);
+    });
+
+    // Toggle chat history
+    historyToggle.addEventListener('change', (e) => {
+      localStorage.setItem('saveHistory', e.target.checked);
+    });
+
+    // Clear all data
+    function clearAllData() {
+      if (confirm('Are you sure you want to clear all chat data? This cannot be undone.')) {
+        localStorage.removeItem('chat_history');
+        localStorage.removeItem('theme');
+        localStorage.removeItem('conversations');
+        
+        clearStatus.style.display = "block";
+        setTimeout(() => {
+          clearStatus.style.display = "none";
+        }, 5000);
+      }
+    }
+
+    // Initialize settings when page loads
+    document.addEventListener('DOMContentLoaded', initSettings);
   </script>
 </body>
-</html>
+  </html>
