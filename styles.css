@@ -1,11 +1,9 @@
-/* Reset */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-/* Root font & smooth scroll */
 html, body {
   height: 100%;
   font-family: 'Segoe UI', Roboto, Tahoma, sans-serif;
@@ -23,7 +21,6 @@ body.light-mode {
   color: #000;
 }
 
-/* Top Bar */
 #top-box {
   position: sticky;
   top: 0;
@@ -43,17 +40,15 @@ body.light-mode #top-box {
   border-bottom: 1px solid #ddd;
 }
 
-/* Logo Title */
 #top-box h1 {
-  font-size: 27px;
+  font-size: 28px;
   font-weight: 610;
 }
 
-/* Settings + Theme Switch */
 .top-buttons {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
 }
 
 #settings-btn {
@@ -84,7 +79,6 @@ body.light-mode #theme-switch {
   color: #333;
 }
 
-/* App Container */
 #app-container {
 max-width: 1000px;
 margin: auto;
@@ -97,7 +91,6 @@ opacity: 0;
 transition: opacity 0.8s ease;
 }
 
-/* Chat Area */
 #chat-box {
 flex: 1;
 overflow-y: auto;
@@ -119,64 +112,69 @@ body.light-mode #chat-box {
   color: #000;
 }
 
-/* Modern Message Styles */
 .user-message,
 .bot-message {
   max-width: 85%;
-  padding: 16px 24px;
+  padding: 12px 18px;
   font-size: 1rem;
-  border-radius: 20px;
+  border-radius: 16px;
   white-space: pre-wrap;
   word-wrap: break-word;
-  backdrop-filter: blur(12px);
+  background-size: 200% 200%;
+  border: 1px solid rgba(255, 255, 255, 0.06);
   box-shadow:
-    0 4px 8px rgba(0, 0, 0, 0.1),
-    0 8px 30px rgba(0, 0, 0, 0.2);
-  animation: fadeInUp 0.35s ease-out;
-  transition: all 0.4s ease;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+    0 3px 8px rgba(0, 0, 0, 0.25),
+    0 6px 20px rgba(0, 0, 0, 0.15);
+  transform-style: preserve-3d;
+  perspective: 800px;
+  transform: rotateX(0deg) rotateY(0deg);
+  transition:
+    background 0.25s ease,
+    color 0.25s ease,
+    transform 0.3s ease;
+  animation: fadeInUp 0.3s ease-out;
 }
 
-/* User Message (Right Side) */
+.user-message:hover,
+.bot-message:hover {
+  transform: rotateX(2deg) rotateY(-2deg);
+}
+
 .user-message {
   align-self: flex-end;
-  background: linear-gradient(145deg, #007bff, #0056d2);
+  background: linear-gradient(to right, #0d6efd, #0056d2);
   color: #ffffff;
 }
 
-/* Bot Message (Left Side) */
 .bot-message {
   align-self: flex-start;
-  background: linear-gradient(145deg, #2b2b2b, #1a1a1a);
+  background: linear-gradient(to right, #3a3a3a, #1f1f1f);
   color: #ffffff;
 }
 
-/* Light Mode Adjustments */
 body.light-mode .bot-message {
-  background: rgba(240, 240, 240, 0.85);
+  background: #f2f2f2;
   color: #111;
-  border: 1px solid rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 body.light-mode .user-message {
-  background: linear-gradient(145deg, #d7eaff, #b4d7ff);
+  background: linear-gradient(to right, #cce5ff, #b3d9ff);
   color: #000;
-  border: 1px solid rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
-/* Entry Animation */
 @keyframes fadeInUp {
-  0% {
+  from {
     opacity: 0;
-    transform: translateY(12px);
+    transform: translateY(10px) scale(0.98);
   }
-  100% {
+  to {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
   }
-}
+  }
 
-/* Typing Effect */
 .bot-message.typing {
   opacity: 0.7;
   font-style: italic;
@@ -184,7 +182,6 @@ body.light-mode .user-message {
   pointer-events: none;
 }
 
-/* Animations */
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(12px); }
   to { opacity: 1; transform: translateY(0); }
@@ -195,7 +192,6 @@ body.light-mode .user-message {
   50% { opacity: 0.25; }
 }
 
-/* Input Area */
 #input-form {
   position: fixed;
   bottom: 0;
@@ -215,7 +211,6 @@ body.light-mode #input-form {
   border-top: 1px solid #ccc;
 }
 
-/* Input Field */
 #user-input {
   flex: 1;
   padding: 12px 14px;
@@ -235,7 +230,6 @@ body.light-mode #user-input {
   color: #000;
 }
 
-/* Send Button */
 #send-btn {
   background: linear-gradient(135deg, #0d6efd, #084298);
   color: #fff;
@@ -252,7 +246,6 @@ body.light-mode #user-input {
   background: #06367c;
 }
 
-/* Scroll to Bottom */
 #scroll-to-bottom {
   position: fixed;
   bottom: 80px;
@@ -277,7 +270,6 @@ body.light-mode #scroll-to-bottom {
   color: #000;
 }
 
-/* Loading Screen */
 #loading-screen {
   position: fixed;
   top: 0;
@@ -315,7 +307,6 @@ body.light-mode #scroll-to-bottom {
   50% { opacity: 0; }
 }
 
-/* Responsive */
 @media (max-width: 600px) {
   #chat-box {
     font-size: 14px;
@@ -327,7 +318,7 @@ body.light-mode #scroll-to-bottom {
   }
 
   #top-box h1 {
-    font-size: 18px;
+    font-size: 22px;
   }
 }
 
