@@ -199,7 +199,7 @@ Chatbot Info:
         } else {
           clearInterval(interval);
         }
-      }, 1);
+      }, 2);
     }
 
     async function checkLimit() {
@@ -279,8 +279,8 @@ function isHardQuestion(text) {
       const prompt = userInput.value.trim();
       if (!prompt) return;
       
-      if (prompt.length > 650) {
-  appendMessage('⚠️ Your message is too long! Please keep it under 650 characters.', 'bot-message');
+      if (prompt.length > 1000) {
+  appendMessage('⚠️ Your message is too long! Please keep it under 1000 characters.', 'bot-message');
   return;
       }
       userInput.value = '';
