@@ -170,8 +170,8 @@ body.light-mode #theme-switch {
 }
 
 #chat-box::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 9px;
+  height: 9px;
 }
 
 #chat-box::-webkit-scrollbar-track {
@@ -218,7 +218,7 @@ body.light-mode #chat-box {
     box-shadow 0.4s ease;
   animation: 
     fadeInUp 0.5s cubic-bezier(0.22, 1, 0.36, 1) both,
-    float 8s ease-in-out infinite;
+    float 10s ease-in-out infinite;
   will-change: transform, opacity;
   position: relative;
 }
@@ -236,9 +236,9 @@ body.light-mode #chat-box {
 
 @keyframes float {
   0%, 100% { transform: translateY(0) rotate(0deg); }
-  25% { transform: translateY(-3px) rotate(0.5deg); }
-  50% { transform: translateY(-5px) rotate(-0.5deg); }
-  75% { transform: translateY(-3px) rotate(0.5deg); }
+  25% { transform: translateY(-3px) rotate(0.3deg); }
+  50% { transform: translateY(-5px) rotate(-0.3deg); }
+  75% { transform: translateY(-3px) rotate(0.3deg); }
 }
 
 @keyframes messagePop {
@@ -487,7 +487,7 @@ body.light-mode #scroll-to-bottom {
   100% { transform: scale(1); opacity: 1; }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 610px) {
   #chat-box {
     padding: 16px;
     border-radius: 12px;
@@ -513,15 +513,15 @@ body.light-mode #scroll-to-bottom {
   }
   
   #top-box h1 {
-    font-size: 26px;
+    font-size: 27px;
   }
   
   #settings-btn {
-    font-size: 25px;
+    font-size: 26px;
   }
   
   #theme-switch {
-    font-size: 25px;
+    font-size: 26px;
   }
 }
 
