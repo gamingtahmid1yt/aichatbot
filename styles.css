@@ -236,9 +236,9 @@ body.light-mode #chat-box {
 
 @keyframes float {
   0%, 100% { transform: translateY(0) rotate(0deg); }
-  25% { transform: translateY(-3px) rotate(0.3deg); }
-  50% { transform: translateY(-5px) rotate(-0.3deg); }
-  75% { transform: translateY(-3px) rotate(0.3deg); }
+  25% { transform: translateY(-3px) rotate(0.1deg); }
+  50% { transform: translateY(-5px) rotate(-0.1deg); }
+  75% { transform: translateY(-3px) rotate(0.1deg); }
 }
 
 .user-message {
