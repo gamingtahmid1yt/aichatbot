@@ -230,7 +230,7 @@ body.light-mode #chat-box {
     box-shadow 0.4s ease;
   animation: 
     fadeInUp 0.5s cubic-bezier(0.22, 1, 0.36, 1) both,
-    float 6s ease-in-out infinite;
+    float 8s ease-in-out infinite;
   will-change: transform, opacity;
   position: relative;
 }
@@ -271,7 +271,7 @@ body.light-mode #chat-box {
   align-self: flex-start;
   background: linear-gradient(145deg, #3a3a3a, #1f1f1f);
   color: #ffffff;
-  animation-delay: 0.3s;
+  animation-delay: 0.1s;
   animation-name: fadeInUp, float;
 }
 
