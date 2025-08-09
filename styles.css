@@ -241,12 +241,6 @@ body.light-mode #chat-box {
   75% { transform: translateY(-3px) rotate(0.3deg); }
 }
 
-@keyframes messagePop {
-  0% { transform: scale(0.95); opacity: 0; }
-  80% { transform: scale(1.02); }
-  100% { transform: scale(1); opacity: 1; }
-}
-
 .user-message {
   align-self: flex-end;
   background: linear-gradient(145deg, #0d6efd, #0056d2);
@@ -263,6 +257,94 @@ body.light-mode #chat-box {
   animation-name: fadeInUp, float;
 }
 
+/* Improved table styling within messages */
+.bot-message table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin: 12px 0;
+  background: rgba(30, 30, 30, 0.6);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 
+    0 4px 16px rgba(0,0,0,0.2),
+    inset 0 1px 1px rgba(255,255,255,0.05);
+  backdrop-filter: blur(8px);
+  transform: translateZ(0);
+  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.bot-message th, 
+.bot-message td {
+  padding: 14px 16px;
+  text-align: left;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.bot-message th {
+  background: rgba(13, 110, 253, 0.15);
+  font-weight: 600;
+  color: #0d6efd;
+}
+
+.bot-message tr:last-child td {
+  border-bottom: none;
+}
+
+.bot-message tr:hover td {
+  background: rgba(255,255,255,0.03);
+}
+
+/* Divider style */
+.message-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+  margin: 18px 0;
+  border: none;
+}
+
+/* Final thought section */
+.final-thought {
+  padding: 16px;
+  background: rgba(30, 30, 30, 0.4);
+  border-radius: 12px;
+  border-left: 3px solid #0d6efd;
+  margin-top: 16px;
+}
+
+.final-thought-title {
+  font-weight: 600;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Action buttons */
+.message-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 16px;
+  flex-wrap: wrap;
+}
+
+.action-button {
+  padding: 8px 16px;
+  background: rgba(13, 110, 253, 0.15);
+  border: 1px solid rgba(13, 110, 253, 0.3);
+  border-radius: 8px;
+  color: #0d6efd;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.action-button:hover {
+  background: rgba(13, 110, 253, 0.25);
+  transform: translateY(-1px);
+}
+
+/* Light mode adjustments */
 body.light-mode .bot-message {
   background: linear-gradient(145deg, #f2f2f2, #e6e6e6);
   color: #333;
@@ -273,6 +355,44 @@ body.light-mode .user-message {
   background: linear-gradient(145deg, #cce5ff, #b3d9ff);
   color: #333;
   border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+body.light-mode .bot-message table {
+  background: rgba(245, 245, 245, 0.9);
+  box-shadow: 
+    0 4px 16px rgba(0,0,0,0.1),
+    inset 0 1px 1px rgba(0,0,0,0.05);
+}
+
+body.light-mode .bot-message th,
+body.light-mode .bot-message td {
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+body.light-mode .bot-message th {
+  background: rgba(13, 110, 253, 0.1);
+}
+
+body.light-mode .bot-message tr:hover td {
+  background: rgba(0,0,0,0.03);
+}
+
+body.light-mode .message-divider {
+  background: linear-gradient(90deg, transparent, rgba(0,0,0,0.1), transparent);
+}
+
+body.light-mode .final-thought {
+  background: rgba(245, 245, 245, 0.8);
+  border-left: 3px solid #084298;
+}
+
+body.light-mode .action-button {
+  background: rgba(13, 110, 253, 0.1);
+  border: 1px solid rgba(13, 110, 253, 0.2);
+}
+
+body.light-mode .action-button:hover {
+  background: rgba(13, 110, 253, 0.2);
 }
 
 .bot-message.typing {
@@ -498,6 +618,12 @@ body.light-mode #scroll-to-bottom {
     padding: 12px 16px;
     border-radius: 16px;
     max-width: 90%;
+  }
+  
+  .bot-message th, 
+  .bot-message td {
+    padding: 10px 12px;
+    font-size: 0.9rem;
   }
   
   #input-form {
