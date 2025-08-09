@@ -212,13 +212,13 @@ body.light-mode #chat-box {
   transform-style: preserve-3d;
   perspective: 800px;
   transition:
-    background 0.4s cubic-bezier(0.22, 1, 0.36, 1),
-    color 0.4s cubic-bezier(0.22, 1, 0.36, 1),
-    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
-    box-shadow 0.4s ease;
+    background 0.1s cubic-bezier(0.22, 1, 0.36, 1),
+    color 0.1s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.1s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.1s ease;
   animation: 
-    fadeInUp 0.5s cubic-bezier(0.22, 1, 0.36, 1) both,
-    float 10s ease-in-out infinite;
+    fadeInUp 0.1s cubic-bezier(0.22, 1, 0.36, 1) both,
+    float 20s ease-in-out infinite;
   will-change: transform, opacity;
   position: relative;
 }
@@ -271,7 +271,7 @@ body.light-mode #chat-box {
     inset 0 1px 1px rgba(255,255,255,0.05);
   backdrop-filter: blur(8px);
   transform: translateZ(0);
-  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: all 0.1s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .bot-message th, 
