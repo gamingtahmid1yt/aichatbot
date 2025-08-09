@@ -70,9 +70,9 @@ body.light-mode #top-box {
   background: linear-gradient(135deg, #28a745, #218838);
   color: #fff;
   padding: 8px 14px;
-  font-size: 13px;
+  font-size: 27px;
   border: none;
-  border-radius: 8px;
+  border-radius: 6px;
   cursor: pointer;
   box-shadow: 
     0 2px 6px rgba(0,0,0,0.3),
@@ -412,7 +412,7 @@ body.light-mode #user-input {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 20px;
+  font-size: 22px;
   border: none;
   border-radius: 50%;
   box-shadow: 
@@ -525,12 +525,12 @@ body.light-mode #scroll-to-bottom {
   }
   
   #top-box h1 {
-    font-size: 22px;
+    font-size: 25px;
   }
   
   #settings-btn {
     padding: 6px 12px;
-    font-size: 12px;
+    font-size: 22px;
   }
   
   #theme-switch {
