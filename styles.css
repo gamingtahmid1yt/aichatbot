@@ -140,7 +140,7 @@ body.light-mode #theme-switch {
   height: calc(100vh - 80px);
   overflow: hidden;
   opacity: 0;
-  transition: opacity 0.8s ease;
+  transition: opacity 0.6s ease;
 }
 
 #chat-box {
@@ -155,8 +155,8 @@ body.light-mode #theme-switch {
   scroll-behavior: smooth;
   will-change: scroll-position;
   transition: 
-    background 0.6s cubic-bezier(0.22, 1, 0.36, 1),
-    box-shadow 0.6s ease;
+    background 0.2s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.2s ease;
   max-width: 690px;
   margin: auto;
   width: 100%;
@@ -218,7 +218,7 @@ body.light-mode #chat-box {
     box-shadow 0.1s ease;
   animation: 
     fadeInUp 0.1s cubic-bezier(0.22, 1, 0.36, 1) both,
-    float 20s ease-in-out infinite;
+    float 50s ease-in-out infinite;
   will-change: transform, opacity;
   position: relative;
 }
