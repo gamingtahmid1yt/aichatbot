@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Settings - Ai ChatBot</title>
+  <title>Settings - Nexora AI</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <meta name="description" content="AI ChatBot Settings - Customize your experience, manage data, and get support">
+  <meta name="description" content="Nexora AI Settings - Customize your experience, manage data, and get support">
   <meta name="theme-color" content="#4361ee">
   <style>
     :root {
@@ -377,8 +377,8 @@
 <body>
 
   <div class="container">
-    <a href="https://gamingtahmid1yt.github.io/aichatbot" class="back-btn">
-      <i class="fas fa-arrow-left"></i> Back to Ai ChatBot
+    <a href="https://gamingtahmid1yt.github.io/nexora.ai" class="back-btn">
+      <i class="fas fa-arrow-left"></i> Back to Nexora AI
     </a>
 
     <div class="header">
@@ -402,30 +402,6 @@
             <span class="slider"></span>
           </label>
         </div>
-        
-        <div class="setting-item">
-          <div>
-            <div class="setting-label">Chat History</div>
-            <div class="setting-description">Save conversation history</div>
-          </div>
-          <label class="toggle-switch">
-            <input type="checkbox" id="historyToggle" checked>
-            <span class="slider"></span>
-          </label>
-        </div>
-
-        <div class="setting-item">
-          <div>
-            <div class="setting-label">Analytics</div>
-            <div class="setting-description">Help improve the app by sharing usage data</div>
-          </div>
-          <label class="toggle-switch">
-            <input type="checkbox" id="analyticsToggle" checked>
-            <span class="slider"></span>
-          </label>
-        </div>
-      </div>
-    </div>
 
     <div class="card">
       <div class="card-header">
@@ -448,7 +424,7 @@
       </div>
       
       <button class="btn btn-success" onclick="window.location.href='https://gamingtahmid1yt.github.io/aichatbot-download/'">
-        <i class="fas fa-download"></i> Download AI ChatBot APK
+        <i class="fas fa-download"></i> Download Nexora AI APK for Free
       </button>
       <div class="setting-description" style="margin-top: 0.75rem; text-align: center;">
         Get the Android app for better experience
@@ -461,11 +437,11 @@
         <h3>About & Support</h3>
       </div>
       
-      <button class="btn btn-primary" onclick="window.open('https://wa.me/8801963178893','_blank')">
-        <i class="fab fa-whatsapp"></i> Contact Developer
+      <button class="btn btn-primary" onclick="window.open('tahmidbusinessyt@gmail.com','_blank')">
+        <i class="fab fa-mail"></i> Contact Developer
       </button>
       
-      <button class="btn btn-primary" style="margin-top: 1rem;" onclick="window.location.href='https://gamingtahmid1yt.github.io/aichatbot-privacy-policy/'">
+      <button class="btn btn-primary" style="margin-top: 1rem;" onclick="window.location.href='https://gamingtahmid1yt.github.io/nexora.ai-privacy/'">
         <i class="fas fa-shield-alt"></i> Privacy Policy
       </button>
 
@@ -488,12 +464,12 @@
         
         <div class="setting-item">
           <div class="setting-label">Last Updated</div>
-          <div class="setting-value">August 08, 2025</div>
+          <div class="setting-value">August 12, 2025</div>
         </div>
         
         <div class="setting-item">
           <div class="setting-label">Developer</div>
-          <div class="setting-value">Tahmid Islam</div>
+          <div class="setting-value">Tahmid</div>
         </div>
       </div>
     </div>
@@ -507,8 +483,6 @@
   <script>
     // DOM Elements
     const darkModeToggle = document.getElementById('darkModeToggle');
-    const historyToggle = document.getElementById('historyToggle');
-    const analyticsToggle = document.getElementById('analyticsToggle');
     const clearStatus = document.getElementById('clearStatus');
     const appVersion = document.getElementById('appVersion');
     const toast = document.getElementById('toast');
@@ -524,10 +498,6 @@
       // Chat history
       const saveHistory = localStorage.getItem('saveHistory') !== 'false';
       historyToggle.checked = saveHistory;
-      
-      // Analytics
-      const allowAnalytics = localStorage.getItem('allowAnalytics') !== 'false';
-      analyticsToggle.checked = allowAnalytics;
       
       // App version (could be fetched from package.json in a real app)
       appVersion.textContent = '2025.08';
@@ -545,18 +515,6 @@
     darkModeToggle.addEventListener('change', (e) => {
       localStorage.setItem('darkMode', e.target.checked);
       toggleDarkMode(e.target.checked);
-    });
-
-    // Toggle chat history
-    historyToggle.addEventListener('change', (e) => {
-      localStorage.setItem('saveHistory', e.target.checked);
-      showToast(`Chat history ${e.target.checked ? 'enabled' : 'disabled'}`, 'success');
-    });
-
-    // Toggle analytics
-    analyticsToggle.addEventListener('change', (e) => {
-      localStorage.setItem('allowAnalytics', e.target.checked);
-      showToast(`Analytics ${e.target.checked ? 'enabled' : 'disabled'}`, 'success');
     });
 
     // Clear all data
