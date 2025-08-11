@@ -23,7 +23,7 @@
       } catch (e) {
         console.error('Error checking server status:', e);
       }
-    }, 60000);
+    }, 70000);
 
     const chatBox = document.getElementById('chat-box');
     if (!chatBox) {
@@ -78,7 +78,7 @@
 
     const messages = [
       { role: 'system',
-       content: `‎Created by Tahmid, a Class 8 student from Chandpur, Bangladesh. Released on 1 July 2025. Owned by Tahmid (birthday: 4 August) Tahmid school name: Goni Model High School. Chandpur is famous for Ilish (Hilsha) and Boro Station.
+       content: `‎Created by Tahmid, a Class 8 student from Chandpur, Bangladesh. Released on 1 July 2025. Owned by Tahmid (birthday: 4 August) Tahmid school name: Goni Model High School. Chandpur is famous for Ilish (Hilsha) and Boro Station. You can read last 14-18 messages of user. Messages is save in user browser/app local storage, so if page refresh so messages kept.
 Chatbot Info:
 ‎Version: 2025.08, Last Updated: 8 Aug 2025  
 App requirements ‎Android 6.0+ (2GB RAM)  Recommended: Android 12+ (4GB RAM)  
@@ -145,7 +145,7 @@ Privacy Policy: Settings > Privacy Policy or https://gamingtahmid1yt.github.io/a
 
     await detectUserIPandCheckPremium();
 
-    const RATE_LIMIT_MS = 5500;
+    const RATE_LIMIT_MS = 5000;
     const limitKey = 'reply_limit';
     const dateKey = 'limit_date';
     const dailyLimit = isPremiumUser ? Infinity : 40;
@@ -295,7 +295,7 @@ function isHardQuestion(text) {
       }
 
       const typingDiv = appendMessage('<span></span>', 'bot-message');
-      const lastMessages = messages.slice(-18);
+      const lastMessages = messages.slice(-15);
 
       if (isHardQuestion(prompt)) {
         typingDiv.querySelector('span').textContent = '🔎 Searching...';
@@ -323,7 +323,7 @@ function isHardQuestion(text) {
             model: 'moonshotai/kimi-k2-instruct',
             temperature: 0.8,
             top_p: 1.0,
-            max_tokens: 2500,
+            max_tokens: 3000,
             messages: [
               { role: 'system', content: messages[0]?.content || "" },
               ...lastMessages,
