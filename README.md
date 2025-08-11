@@ -1,2 +1,2 @@
-# Ai ChatBot
+# Nexora AI
 ⚠️ Error. Please Refresh.
