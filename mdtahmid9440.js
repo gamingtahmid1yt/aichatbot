@@ -295,7 +295,7 @@ function isHardQuestion(text) {
       }
 
       const typingDiv = appendMessage('<span></span>', 'bot-message');
-      const lastMessages = messages.slice(-15);
+      const lastMessages = messages.slice(-13);
 
       if (isHardQuestion(prompt)) {
         typingDiv.querySelector('span').textContent = '🔎 Searching...';
@@ -343,14 +343,14 @@ function isHardQuestion(text) {
       } catch (error) {
         appendMessage('⚠️ Server error. Trying backup...', 'bot-message');
         try {
-          const backup = await fetch('https://backupapi.tahmideditofficial.workers.dev', {
+          const backup = await fetch('https://api.tahmideditofficial.workers.dev', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-              model: 'moonshotai/kimi-k2:free',
+              model: 'openai/gpt-oss-120b',
               temperature: 0.8,
               top_p: 1.0,
-              max_tokens: 2500,
+              max_tokens: 2900,
               messages: [
                 { role: 'system', content: messages[0]?.content || "" },
                 ...lastMessages,
