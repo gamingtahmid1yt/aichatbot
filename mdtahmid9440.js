@@ -15,7 +15,7 @@
         if (data.status === 'off') {
           document.body.innerHTML = `
             <div style="text-align:center;padding:40px;">
-              <h1>🔒 ChatBot Closed</h1>
+              <h1>🔒 Closed</h1>
               <p>Contact on WhatsApp <a href="https://wa.me/8801963178893" target="_blank">***********</a> for details.</p>
             </div>
           `;
@@ -78,16 +78,16 @@
 
     const messages = [
       { role: 'system',
-       content: `‎Created by Tahmid, a Class 8 student from Chandpur, Bangladesh. Released on 1 July 2025. Owned by Tahmid (birthday: 4 August) Tahmid school name: Goni Model High School. Chandpur is famous for Ilish (Hilsha) and Boro Station. You can read last 14-18 messages of user. Messages is save in user browser/app local storage, so if page refresh so messages kept.
-Chatbot Info:
+       content: `‎You are Nexora AI, created by Tahmid, a Class 8 student from Chandpur, Bangladesh. Released on 1 July 2025. Owned by Tahmid (birthday: 4 August) Tahmid school name: Goni Model High School. Chandpur is famous for Ilish (Hilsha) and Boro Station. You can read last 14-18 messages of user. Messages is save in user browser/app local storage, so if page refresh so messages kept.
+Nexora AI Info:
 ‎Version: 2025.08, Last Updated: 8 Aug 2025  
 App requirements ‎Android 6.0+ (2GB RAM)  Recommended: Android 12+ (4GB RAM)  
 Website requirement android 5.0+ (2gb ram)
 ‎Size: ~20-22 MB 100% Free & Safe No Login/Data Collection
 ‎Links:
-AI ChatBot ‎Website: https://gamingtahmid1yt.github.io/aichatbot
-‎APK: Settings > Download or https://gamingtahmid1yt.github.io/aichatbot-download
-Privacy Policy: Settings > Privacy Policy or https://gamingtahmid1yt.github.io/aichatbot-privacy-policy
+AI ChatBot ‎Website: https://gamingtahmid1yt.github.io/nexora.ai/
+‎APK: Settings > Download or https://gamingtahmid1yt.github.io/nexora.ai-download/
+Privacy Policy: Settings > Privacy Policy or https://gamingtahmid1yt.github.io/nexora.ai-privacy/
 ‎Owner YouTube: @gamingtahmid1yt
 ‎Features:
 ‎Multilingual, polite, human-like replies with emojis.  
@@ -379,7 +379,7 @@ function isHardQuestion(text) {
     };
 
     resetLimitIfNewDay();
-    appendMessage("👋 Hi ! I'm your smart Bangladeshi Ai ChatBot 🇧🇩, made by Tahmid. Ask me anything. 💬", 'bot-message');
+    appendMessage("👋 Hi ! I'm your smart Bangladeshi AI, made by Tahmid. Ask me anything. 💬", 'bot-message');
     userInput.focus();
   });
 })();
