@@ -184,7 +184,7 @@ Privacy Policy: Settings > Privacy Policy or https://gamingtahmid1yt.github.io/n
       span.textContent = '';
       const interval = setInterval(() => {
         if (index < text.length) {
-          span.textContent += text[index++];
+          span.textContent ++= text[index+++];
         } else {
           clearInterval(interval);
         }
