@@ -1,127 +1,65 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Nexora AI</title>
-  <meta name="description" content="An interactive AI ChatBot made by Tahmid from Bangladesh with dark/light mode and other lot of features, no data is collected all data stays in your local storage">
-  <link rel="stylesheet" href="styles.css" />
-  <link rel="icon" href="nexoraaiwebicon10.png">
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-</head>
-<body>
-  <!-- Loading Screen -->
-  <div id="loading-screen">
-    <div class="spinner"></div>
-    <p class="blinking">Loading Nexora AI...</p>
-  </div>
-  
-  <!-- Top bar -->
-  <div id="top-box">
-    <h1>Nexora AI</h1>
-    <div class="top-buttons">
-      <button id="settings-btn" aria-label="Settings">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M19.4 15C19.2669 15.3016 19.227 15.6362 19.2881 15.9606C19.3492 16.285 19.5076 16.5784 19.734 16.8L19.8 16.8666C19.9333 17.0222 20.0333 17.2022 20.1 17.4C20.1667 17.5978 20.2 17.8089 20.2 18C20.2 18.3834 20.0533 18.7334 19.8 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M4.2 19C3.94667 18.7334 3.8 18.3834 3.8 18C3.8 17.8089 3.83333 17.5978 3.9 17.4C3.96667 17.2022 4.06667 17.0222 4.2 16.8666L4.266 16.8C4.4924 16.5784 4.6508 16.285 4.7119 15.9606C4.773 15.6362 4.7331 15.3016 4.6 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M4.6 9C4.7331 8.6984 4.773 8.3638 4.7119 8.0394C4.6508 7.715 4.4924 7.4216 4.266 7.2L4.2 7.1334C4.06667 6.9778 3.96667 6.7978 3.9 6.6C3.83333 6.4022 3.8 6.1911 3.8 6C3.8 5.6166 3.94667 5.2666 4.2 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M19.8 5C20.0533 5.2666 20.2 5.6166 20.2 6C20.2 6.1911 20.1667 6.4022 20.1 6.6C20.0333 6.7978 19.9333 6.9778 19.8 7.1334L19.734 7.2C19.5076 7.4216 19.3492 7.715 19.2881 8.0394C19.227 8.3638 19.2669 8.6984 19.4 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </button>
-      <div class="theme-switch-wrapper">
-        <label class="theme-switch" for="theme-checkbox">
-          <input type="checkbox" id="theme-checkbox">
-          <div class="slider"></div>
-        </label>
-      </div>
-    </div>
-  </div>
-  
-  <!-- Settings Menu -->
-  <div class="settings-menu">
-    <div class="settings-header">
-      <h2 class="settings-title">Settings</h2>
-      <button class="close-settings">&times;</button>
-    </div>
-    
-    <div class="settings-section">
-      <h3 class="settings-section-title">Chat History</h3>
-      <div class="chat-logs" id="chat-logs-container">
-        <!-- Chat logs will be populated here -->
-      </div>
-      <button id="clear-chat" class="btn-danger">Clear All Chats</button>
-    </div>
-    
-    <div class="settings-section">
-      <h3 class="settings-section-title">Appearance</h3>
-      <div class="appearance-options">
-        <button id="dark-mode-btn" class="btn-secondary">Dark Mode</button>
-        <button id="light-mode-btn" class="btn-secondary">Light Mode</button>
-      </div>
-    </div>
-    
-    <div class="settings-section">
-      <h3 class="settings-section-title">About</h3>
-      <p>Nexora AI v2025.08</p>
-      <p>Created by Tahmid</p>
-      <a href="https://github.com/gamingtahmid1yt" target="_blank" class="btn-link">GitHub</a>
-    </div>
-  </div>
-  
-  <!-- Main Chat UI -->
-  <div id="app-container">
-    <div id="chat-box" role="log" aria-live="polite"></div>
-    
-    <!-- Input Form -->
-    <form id="input-form" aria-label="Chat input form">
-      <input 
-        id="user-input" 
-        type="text" 
-        placeholder="Type a message..." 
-        autocomplete="off"
-        aria-label="Type your message"
-      />
-      <button type="button" id="search-btn" aria-label="Search web" title="Search web">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M11 19C15.4183 19 19 15.4183 19 11C19 6.58172 15.4183 3 11 3C6.58172 3 3 6.58172 3 11C3 15.4183 6.58172 19 11 19Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M21 21L16.65 16.65" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </button>
-      <button type="submit" id="send-btn" aria-label="Send message">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M22 2L11 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M22 2L15 22L11 13L2 9L22 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </button>
-    </form>
-    
-    <!-- Scroll to Bottom Button -->
-    <button id="scroll-to-bottom" title="Scroll to bottom" aria-label="Scroll to bottom">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M12 5V19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        <path d="M19 12L12 19L5 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-    </button>
-  </div>
-  
-  <!-- JavaScript connection -->
-  <script src="mdtahmid9440.js" defer></script>
-  
-  <!-- Loading screen handler -->
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      setTimeout(() => {
-        const loader = document.getElementById('loading-screen');
-        const app = document.getElementById('app-container');
-        if (loader) {
-          loader.style.opacity = '0';
-          setTimeout(() => loader.style.display = 'none', 600);
-        }
-        if (app) app.style.opacity = '1';
-      }, 100);
-    });
-  </script>
-</body>
-    </html>
+‎<!DOCTYPE html>
+‎<html lang="en">
+‎<head>
+‎  <meta charset="UTF-8" />
+‎  <meta name="viewport" content="width=device-width, initial-scale=1" />
+‎  <title>Nexora AI</title>
+‎  <meta name="description" content="An interactive AI ChatBot made by Tahmid from Bangladesh with dark/light mode and other lot of features, no data is collected all data stays in your local storage">
+‎  <link rel="stylesheet" href="styles.css" />
+‎  <link rel="icon" href="nexoraaiwebicon10.png">
+‎</head>
+‎<body>
+‎  <!-- Loading Screen -->
+‎  <div id="loading-screen">
+‎    <div class="spinner"></div>
+‎    <p class="blinking">Loading Nexora AI...</p>
+‎  </div>
+‎  
+‎  <!-- Top bar -->
+‎  <div id="top-box">
+‎    <h1>Nexora AI</h1>
+‎    <div class="top-buttons">
+‎      <a href="settings.html" id="settings-btn" aria-label="Settings">⚙️</a>
+‎      <button id="theme-switch" title="Toggle Dark/Light Mode" aria-label="Toggle theme">🌙</button>
+‎    </div>
+‎  </div>
+‎  
+‎  <!-- Main Chat UI -->
+‎  <div id="app-container">
+‎    <div id="chat-box" role="log" aria-live="polite"></div>
+‎    
+‎    <!-- Input Form -->
+‎    <form id="input-form" aria-label="Chat input form">
+‎      <input 
+‎        id="user-input" 
+‎        type="text" 
+‎        placeholder="Type a message..." 
+‎        autocomplete="off"
+‎        aria-label="Type your message"
+‎      />
+‎      <button type="submit" id="send-btn" aria-label="Send message">Send</button>
+‎    </form>
+‎    
+‎    <!-- Scroll to Bottom Button -->
+‎    <button id="scroll-to-bottom" title="Scroll to bottom" aria-label="Scroll to bottom">⇩</button>
+‎  </div>
+‎  
+‎  <!-- JavaScript connection -->
+‎  <script src="mdtahmid9440.js" defer></script>
+‎  
+‎  <!-- Loading screen handler -->
+‎  <script>
+‎    document.addEventListener('DOMContentLoaded', () => {
+‎      setTimeout(() => {
+‎        const loader = document.getElementById('loading-screen');
+‎        const app = document.getElementById('app-container');
+‎        if (loader) {
+‎          loader.style.opacity = '0';
+‎          setTimeout(() => loader.style.display = 'none', 600);
+‎        }
+‎        if (app) app.style.opacity = '1';
+‎      }, 100);
+‎    });
+‎  </script>
+‎</body>
+‎</html>
